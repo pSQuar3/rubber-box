@@ -1,6 +1,5 @@
 //algo correct: works in python
 //ceil function seems to work the same way as the floor function
-
 #include <iostream>
 #include <cmath>
 using namespace std;
