@@ -6,15 +6,31 @@
 #include <vector>
 #include <cmath>
 using namespace std;
-hello
-litte
 
+// create a separate function for the task to be performed and call named function from the main function
 
 void displayType()
 {
     int x = 1;
     string my_type = typeid(x).name();
     system(("echo " + my_type + " | c++filt -t").c_str());
+}
+void vecArr()
+{
+    int n[10][10];
+    for(int i=0;i<10;i++)
+    {
+        for(int j=0;j<10;j++)
+            n[i][j] = i+j;
+    }
+    cout << "Displaying the elements in the array : \n";
+    for(int i=0;i<10;i++)
+    {
+        for(int j=0;j<10;j++)
+            cout << (long)&n[i][j] << " ";
+        cout << " \n";
+    }
+
 }
 void vecDo()
 {
@@ -58,7 +74,8 @@ int main()
     auto i = kh.begin();
     cout << *i << endl;
     cout << " Calling the function vecDo()\n\n" << endl;
-    vecDo();
+    vecArr();
+    //vecDo();
     /*
     //displayType(i);
     cout << "entering copied code" << endl;
