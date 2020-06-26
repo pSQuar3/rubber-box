@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include <cmath>
+
+
 using namespace std;
 
 long gcd(long a, long b)

@@ -40,7 +40,7 @@ int main()
     for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr)
     {
         cout << '\t' << itr->first 
-             << '\t' << itr->second << '\n'; 
+             << '\t' << itr->second << '\n';
     } 
     cout << endl; 
   
