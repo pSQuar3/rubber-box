@@ -1,9 +1,11 @@
-// Using a constructor and destructo
+// Using a constructor and destructor
 #include <iostream>
 #include <map>
+#include <new>
+#include <cstdlib>
 using namespace std;
 
-#define SIZE 100
+const int SIZE=100;
 // This creates the class stack.
 class stack
 {
@@ -14,10 +16,20 @@ class stack
         ~stack(); // destructor
         void push(int i);
         int pop();
+        stack(const stack &a);// copy constructor
 };
 // stack's constructor
 stack::stack()
 {
+    try
+    {
+        stck = new int[100];
+    }
+    catch(bad_alloc xa)
+    {
+        cout << "Allocation Failure" << endl;
+        exit(EXIT_FAILURE);
+    }
     tos = 0;
     cout << "Stack Initialized\n";
 }
@@ -25,6 +37,21 @@ stack::stack()
 stack::~stack()
 {
     cout << "Stack Destroyed\n";
+}
+stack::stack(const stack &a)
+{
+    // constructor to copy the elements of the data of object a to the new object
+    try
+    {
+        stck = new int[SIZE];
+    }
+    catch(bad_alloc xa)
+    {
+        cout << "Allocation Failure" << endl;
+        exit(EXIT_FAILURE);
+    }
+    for(int i=0;i<SIZE;i++)
+        stck[i] = a.stck[i];
 }
 void stack::push(int i)
 {

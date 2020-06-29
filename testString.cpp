@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 using namespace std;
-void part_1()
+/*void part_1()
 {
     string source("xxx");
     string s(source.begin(), source.end());
@@ -12,10 +12,10 @@ void part_1()
     source.reserve(500);
     cout << "Length of the string = " << source.size() << endl;
     cout << "Capacity = " << source.capacity() << endl;//string header file adds 2*l-1 characters for each string created.
-}
+}*/
 int main()
 {
-    string s1("12345");
+    /*string s1("12345");
     // Set the iterator indicate the first element
     string::iterator it = s1.begin();
     // This may copy the first to the second or
@@ -26,5 +26,7 @@ int main()
     cout << "s1 = " << s1 << endl;
     cout << "s2 = " << s2 << endl;
     cout << "Testing the begin() and end() functions in the string" << endl;
-    part_1();
+    part_1();*/
+
+    return 0;
 } ///:~
