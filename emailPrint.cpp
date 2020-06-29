@@ -8,44 +8,6 @@
 #include <cmath>
 using namespace std;
 
-bool checkSame(char *a, char *b, int lna, int lnb)
-{
-    bool h = true;
-    if(lna == lnb)
-    {
-        int ind = 0;
-        while((ind < lna)&&(h == true))
-        {
-            cout << "checkSame called: a[" << ind << "] = " << a[ind] << " b[" << ind << "]" << endl;
-            if(*a != *b)
-                h = false;
-            ind++;
-            a++;
-            b++;
-            cout << "h = " << h << endl;
-        }
-    }
-    return h;
-}
-bool checkLess(int *a, int *b, int lna, int lnb)
-{
-    bool h = true;
-    if(lna == lnb)
-    {
-        int ind = 0;
-        while((ind < lna)&&(h == true))
-        {
-            cout << "checkless called: a[" << ind << "] = " << a[ind] << " b[" << ind << "]" << endl;
-            if(*a > *b)
-                h = false;
-            ind++;
-            a++;b++;
-            cout << "h = " << h << endl;
-        }
-    }
-    return h;
-}
-
 int main()
 {
     int n;
@@ -53,63 +15,85 @@ int main()
     string cd[n];
     for(int i=0;i<n;i++)
     {
+        cd[i] = "NO";
         string s,t;
         cin >> s >> t;
         char Sc[s.length()];
         char Tc[t.length()];
         int cS[s.length()];
         int cT[s.length()];
-        int j=0;
-        // inserting the elements of the strings into the arrays
-        for(auto i=s.begin();i < s.end();i++)
+        int lenS=0;
+        if(s.length() <= t.length())
         {
-            if(j > 0)
+            // inserting the elements of the strings into the arrays
+            for(auto i=s.begin();i < s.end();i++)
             {
-                if(*i == Sc[j-1])
+                if(lenS > 0)
                 {
-                    Sc[j] = *i;
-                    cS[j] = 1;
-                    j++;
+                    if(*i == Sc[lenS-1])
+                    {
+                        Sc[lenS] = *i;
+                        cS[lenS] = 1;
+                        lenS++;
+                    }
+                    else
+                        cS[lenS-1]++;
                 }
                 else
-                {
-                    cS[j-1]++;
-                }
+                    Sc[0] = *i;
             }
-            else
-                Sc[0] = *i;
-        }
-        // inserting the elements of the strings into the arrays
-        j = 0;
-        for(auto i=t.begin();i < t.end();i++)
-        {
-            if(j > 0)
+            // inserting the elements of the strings into the arrays
+            int lenT = 0;
+            for(auto i=t.begin();i < t.end();i++)
             {
-                if(*i != Tc[j-1])
+                if(lenT > 0)
                 {
-                    Tc[j] = *i;
-                    cT[j] = 1;
-                    j++;
+                    if(*i != Tc[lenT-1])
+                    {
+                        Tc[lenT] = *i;
+                        cT[lenT] = 1;
+                        lenT++;
+                    }
+                    else
+                        cT[lenT-1]++;
+    
                 }
                 else
+                    Tc[0] = *i;
+            }
+            //check arrays Sc[] and Tc[] for equality
+            // if equal then check arrays cT and cS for equality
+            if(lenS == lenT)
+            {
+                cerr << "Entered left if block" << endl;
+                int k=0;
+                while(Sc[k] == Tc[k])
                 {
-                    cT[j-1]++;
+                    cerr << "first while loop with k = " << k << endl;
+                    k++;
+                    if(k == lenS)
+                        break;
+                }
+                cerr << "Got out of first while loop with k = " << k << endl;
+                if(k == lenS)
+                {
+                    cerr << "Entered second if block with lenS = " << lenS << endl;
+                    k = 0;
+                    while(cS[k] <= cT[k])
+                    {
+                        cerr << "second while block with k = " << k << endl;
+                        k++;
+                        if(k == lenS)
+                            break;
+                    }
+                    if(k == lenS)
+                        cd[i] = "YES";
                 }
             }
-            else
-                Tc[0] = *i;
+            cerr << "Exited if statement" << endl;
         }
-        //check arrays Sc[] and Tc[] for equality
-        if(checkSame(Sc,Tc,s.length(),t.length()))
-        {
-            if(checkLess(cS,cT,s.length(),t.length()))
-                cd[i] = " YES";
-            else
-                cd[i] = "NO";
-        }
-        else
-            cd[i] = "NO";
     }
+    cout << "printing" << endl;
     for(int i=0;i<n;i++)
         cout << cd[i] << " ";
     return 0;
