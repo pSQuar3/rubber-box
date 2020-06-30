@@ -63,6 +63,14 @@ int main()
             }
             //check arrays Sc[] and Tc[] for equality
             // if equal then check arrays cT and cS for equality
+            cout << "Characters of the array: " << endl;
+            for(int i=0;i<s.length();i++)
+                cout << Sc[i] << " ";
+            cout << "\n";
+            for(int i=0;i<t.length();i++)
+                cout << Tc[i] << " ";
+            cout << "\n";
+
             if(lenS == lenT)
             {
                 cerr << "Entered left if block" << endl;

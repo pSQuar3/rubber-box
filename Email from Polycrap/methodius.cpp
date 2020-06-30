@@ -8,34 +8,6 @@
 #include <cmath>
 using namespace std;
 
-class Q
-{
-    public:
-    unordered_map<int,char> vct;
-    int front,rear;
-    Q()
-    {
-
-        front = -1;
-        rear = -1;
-    }
-    void pushC(char c)
-    {
-        //cout << "pushed\n";
-        rear+=1;
-        vct[rear] = c;
-        //cout << "Exiting loop\n";
-    }
-    char popLast()
-    {
-
-        char k = vct[front];
-        front+=1;
-
-        return k;
-    }
-
-};
 
 int main()
 {
@@ -44,8 +16,6 @@ int main()
     string decision[lim];
     for(int i=0;i<lim;i++)
     {
-        Q s;
-        Q t;
         string sr,tr;
         //cin >> sr >> tr;
         char s[1000000];
@@ -98,8 +68,27 @@ int main()
         {
 
         }*/
+        
+        //  MAKE UP A NEW ALGO FOR DOING THIS STUFF
+        //      
+        //
+        //      ITERATOR A POINTS TO START OF THE STRING S, ITERATOR B POINTS TO THE START OF SRING T
+        //
+        //      BASIC THING TO DO: 
+        //
+        //      IF CHARACTER AT B IS THE SAME AS CHARACTER AT A EXECUTE FOLLOWING STEPS:
+        //          IF THE CHARACTER AT THE INDEX NEXT TO A, I.E., A+1 IS THE SAME AS THAT OF A, THEN POP ONLY ONE ELEMENT FROM THE STRING T.
+        //
+        //          ELSE, MOVE THE POINTER B TILL IT POINTS TO A CHARACTER THAT IS NOT EQUAL TO B.
+        //          
+        //          MOVE POINTER A TO POINT TO THE NEXT CHARACTER IN THE STRING S
+        //
+        //      
 
-        int i=0;
+
+
+
+        
         decision[i] = dec;
     }
     for(int i=0;i<lim;i++)
