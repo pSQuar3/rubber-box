@@ -1,0 +1,6 @@
+AFTER THE FREQUENCIES OF THE ELEMENTS ARE INPUTTED INTO THE ARRAY
+
+INT X = 0
+
+
+https://codeforces.com/problemset/problem/1374/D

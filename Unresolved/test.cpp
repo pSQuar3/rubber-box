@@ -10,8 +10,23 @@ using namespace std;
 
 int main()
 {
-    string s = "HelloTestMessage";
-    for(auto i=s.begin();i<s.end();i++)
-        cout << (char)*i << " ";
+    char c[100];
+    string s;
+    cin >> c;
+    int count=0;
+    char *ch = c;
+    while(*ch !='\0')
+    {
+        cout << (int)*ch << " ";
+        ch++;
+        count++;
+    }
+    cout << "Using array indexes: " << endl;
+    for(int i=0;i<count;i++)
+    {
+        cout << (int)c[i] << " ";
+    }
+    cout << "\n";
+    cout << sizeof(c) << endl;
     return 0;
 }
