@@ -35,10 +35,10 @@ double Box::findDiagonal()
 }
 int main()
 {
-    Box bx;
+    Box bx;//reference type variable
     cout << "Accept the dimensions of the box: " << endl;
     cout << "Enter the length = ";
-    double l,h,b;
+    double l,h,b;//initialising the variables to be initialised into the class
     cin >> l;
     cout << "Enter the breadth = ";
     cin >> b;
