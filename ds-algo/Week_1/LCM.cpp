@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 long long int gcd(long long int a, long long int b)
 {
     long long int t;
@@ -13,12 +14,18 @@ long long int gcd(long long int a, long long int b)
     return a+b;
 
 }
+
 int main()
 {
-    //cout << "Calculation of the GCD of 2 numbers using Eucliden Algorithm" << endl;
-    //cout << "Enter the 2 numbers: ";
-    long long int a, b;
+    long long int a,b;
     cin >> a >> b;
-    cout <<  gcd(a,b);
+    if(b > a)
+    {
+        a = a + b;
+        b = a - b;
+        a = a - b;
+    }
+    long long int l = (a*b)/gcd(a,b);
+    cout << l;
     return 0;
 }
