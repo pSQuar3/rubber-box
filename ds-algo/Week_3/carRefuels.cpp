@@ -19,10 +19,12 @@ int minRefill(int *x, int n, int l)
 
 int main()
 {
-    int n,l;
-    cin >> n >> l;
+    int n,l,m;
+    cin >> l >> m >> n;
     int a[n];
     for(int i=0;i<n;i++)
         cin >> a[i];
     int k = minRefill(a,n,l);
+    cout << k;
+    return 0;
 }

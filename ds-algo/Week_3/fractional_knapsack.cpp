@@ -1,8 +1,6 @@
 #include <iostream>
- 
 using namespace std;
- 
-// A function to merge the two half into a sorted data.
+
 void Merge(int *a, int low, int high, int mid)
 {
 	// We have low to mid and mid+1 to high already sorted.
@@ -67,26 +65,27 @@ void MergeSort(int *a, int low, int high)
 		Merge(a, low, high, mid);
 	}
 }
- 
+
 int main()
 {
-	int n, i;
-	cout<<"Enter the number of data elements to be sorted: ";
-	cin>>n;
- 
-	int arr[n];
-	for(i = 0; i < n; i++)
-	{
-		cout<<"Enter element at index "<< i+1 <<": ";
-		cin>>arr[i];
-	}
- 
-	MergeSort(arr, 0, n-1);
- 
-	// Printing the sorted data.
-	cout<<"\nSorted Data ";
-	for (i = 0; i < n; i++)
-        cout << " " <<arr[i];
- 
-	return 0;
+    int n,cap,lastStored=0;
+    cin >> n >> cap;
+    bool isSorted=true;
+    int ph[n],val[n];
+    for(int i=0;i<n;i++)
+    {
+        cin >> ph[i];
+        cin >> val[i];
+        ph[i] /= val[i];
+        if(i == 0)
+            lastStored = ph[i];
+        else
+        {
+            if(lastStored < ph[i])
+                isSorted = false;
+        }
+    }
+    
+
+    return 0;
 }
