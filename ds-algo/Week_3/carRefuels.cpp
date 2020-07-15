@@ -19,12 +19,41 @@ int minRefill(int *x, int n, int l)
 
 int main()
 {
-    int n,l,m;
-    cin >> l >> m >> n;
-    int a[n];
-    for(int i=0;i<n;i++)
+    int n,d,m,current=0,refCount=0;
+    cin >> d >> m >> n;
+    int a[n+2];
+    bool b = true;
+    for(int i=1;i<n+1;i++)
+    {
         cin >> a[i];
-    int k = minRefill(a,n,l);
-    cout << k;
+        if(i > 1)
+        {
+            if(a[i] - a[i-1] > m)
+                b = false;
+        }
+    }
+    a[0] = 0;
+    a[n+1] = d;
+    n += 2;
+    int i=0;
+    if(!b)
+        refCount = -1;
+    while((b)&&(i < n))
+    {
+        if(a[i]-current > m)
+        {
+            if(a[i] == d)
+                refCount = -1;
+            else
+            {
+                current = a[i-1];
+                refCount++;
+                
+            }
+        }
+        i++;
+        //cout << "INF" << endl;
+    }
+    cout << refCount;
     return 0;
 }

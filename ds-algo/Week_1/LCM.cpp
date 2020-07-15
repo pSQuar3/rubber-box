@@ -8,7 +8,7 @@ long long int gcd(long long int a, long long int b)
     while((a != 0)&&(b != 0))
     {
         t = a%b;
-        a = bdd;
+        a = b;
         b = t;
     }
     return a+b;
