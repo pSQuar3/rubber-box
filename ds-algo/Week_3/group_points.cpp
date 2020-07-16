@@ -1,5 +1,8 @@
 #include <iostream>
 using namespace std;
+
+// code to group student into a minimum number of groups such that the difference in age is at most gr
+
 int main()
 {
     int n,gr;
