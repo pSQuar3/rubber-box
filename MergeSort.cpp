@@ -86,7 +86,6 @@ int main()
 	// Printing the sorted data.
 	cout<<"\nSorted Data ";
 	for (i = 0; i < n; i++)
-        cout << " " <<arr[i];
- 
+        cout << " " <<arr[i]; 
 	return 0;
 }
