@@ -22,11 +22,12 @@ int main()
     string a = "Pratyay Pande";
     //display(st);
     string s,t;
-    cin >> s >> t;
+    /*cin >> s >> t;
     //cout << sizeof(s)/sizeof(s[0]) << " " << sizeof(t)/sizeof(t[0]) << endli;
     auto i = s.begin();
     cout << *i << endl;
     cout << *(i+1) << endl;
-    cout << *(i+2) << endl;
+    cout << *(i+2) << endl;*/
+    cout << (2%3) << endl;
     return 0;
 }
