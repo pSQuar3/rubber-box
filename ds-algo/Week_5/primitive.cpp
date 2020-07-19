@@ -33,6 +33,7 @@ void findMin(int n)
         string k="";
         k = (mp[rems[0]].length() > mp[rems[1]].length())? mp[rems[1]]:mp[rems[0]];
         k = (k.length() > mp[rems[2]].length())? mp[rems[2]]:k;
+
     }
     cout << a[n] << endl;
 }
