@@ -1,7 +1,4 @@
 #include <iostream>
-#include <cmath>
-#include <unordered_map>
-#include <string>
 using namespace std;
 //  problem 2: this code prints the number of operations required correctly
 //  problem occurred: cannot print the sequence of integers aftter every operation
@@ -18,7 +15,6 @@ void findMin(int n)
     int a[n+1];
     a[0] = 0;
     a[1] = 0;
-    unordered_map<int,string> mp;
     for(int i=2;i<=n;i++)
         a[i] = n;
     for(int i=2;i<=n;i++)
@@ -30,10 +26,6 @@ void findMin(int n)
         if(i%2 == 0)
             rems[1] = i/2;
         a[i] = min(a[rems[0]],min(a[rems[1]],a[rems[2]]))+1;
-        string k="";
-        k = (mp[rems[0]].length() > mp[rems[1]].length())? mp[rems[1]]:mp[rems[0]];
-        k = (k.length() > mp[rems[2]].length())? mp[rems[2]]:k;
-
     }
     cout << a[n] << endl;
 }
