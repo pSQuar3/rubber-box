@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <string>
 using namespace std;
-
+//complete solution
 void findMin(int n)
 {
     unordered_map<int,string> m;
