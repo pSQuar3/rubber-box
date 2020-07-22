@@ -20,6 +20,6 @@ int main()
             fibnum++;
         }
     }
-    cout << b;
+    cout << b << endl;
     return 0;
 }
