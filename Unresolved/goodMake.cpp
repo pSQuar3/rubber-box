@@ -17,7 +17,7 @@ int main()
             cin >> a[j];   
         for(int j=0;j<n;j++)
         {
-            if(j > 0)
+            if(j > 0)//needs edit
             {
                 if(a[j] >= a[j-1])
                     counter++;
