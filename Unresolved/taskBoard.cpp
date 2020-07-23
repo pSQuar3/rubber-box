@@ -14,6 +14,7 @@ int main()
         map<char,int> p;
         string s;
         cin >> s;
+        
         for(auto i=s.begin();i < s.end();i++)
             p[*i]++;
         int m;
