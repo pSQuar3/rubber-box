@@ -17,7 +17,7 @@ int main()
             cin >> a[j];   
         for(int j=0;j<n;j++)
         {
-            if(j > 0)//needs edit
+            /*if(j > 0)
             {
                 if(a[j] >= a[j-1])
                     counter++;
@@ -29,6 +29,20 @@ int main()
                         maxC = counter;
                     counter = 1;
                 }
+            }*/
+            if(j > 0)
+            {
+                if(a[j] >= a[j-1])
+                {
+                    if(counter == 0)
+                        counter++;
+                    counter++;
+                }
+                else
+                {
+                    counter = 0;
+                }
+                maxC = max(maxC,counter);
             }
             cout << "maxC = " << maxC << endl;
         }
