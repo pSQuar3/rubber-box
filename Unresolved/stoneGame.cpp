@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+//  https://codeforces.com/problemset/problem/1382/B
 int main()
 {
 	int t;
