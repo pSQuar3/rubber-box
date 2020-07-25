@@ -11,18 +11,46 @@ using namespace std;
 
 class Node
 {
-    int data,count;
     public:
+    int data,count;
     Node *next;
-    void insert(int n)
+    Node()
     {
-        data = n;
+        data = 0;
+    }
+    Node(int n)
+    {
+        this->data = n;
         count++;
     }
-    void deleteVal();
-    static void display();
-}
-void Node::display()
+};
+Node first=NULL;
+void insert(int n)
 {
-    
+    Node ob(n);
+    ob.next = &first;
+    first = ob;
+}
+void display()
+{
+    for(Node *k = &first;k->next != NULL;k = k->next)
+    {
+        cout << k->data << " ";
+    }
+    /*if(k->next != NULL)
+        display(k->next);*/
+}
+int main()
+{
+    int n;
+    cin >> n;
+    for(int i=0;i<n;i++)
+    {
+        int k;
+        cin >> k;
+        insert(k);
+    }
+    cout << "elements of the linked list:" << endl;
+    display();
+    return 0;
 }
