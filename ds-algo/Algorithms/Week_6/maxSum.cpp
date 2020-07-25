@@ -1,47 +1,58 @@
 #include <iostream>
 #include <string>
 using namespace std;
-int n,d[14];
+// this code runs on 5 of the 19 test cases
+// cannot figure out what the problem is
+int n;
+float d[14];
 char op[13];
-
-int M[14][14],m[14][14];
-int mx=0,mn=0;
-int calculate(int a,int b,int c)
+float M[14][14],m[14][14];
+float mx,mn;
+float calculate(float a,int b,float c)
 {
-    int cal=0;
+    float cal=0;
     if(op[b] == '+')
-        cal = a+b;
+        cal = a+c;
     if(op[b] == '-')
-        cal=a-b;
+        cal=a-c;
     if(op[b] == '*')
-        cal=a*b;
+        cal=a*c;
     if(op[b] == '/')
-        cal=a/b;
+        cal=a/c;
     return cal;
 }
 void MinandMax(int i,int j)
 {
-    int k,mx = 30,mn=-1,a,b,c,d,u[2];
-    for(k=i;k<=j-1;k++)
+    float a,b,c,t;
+    mx = -99999;
+    mn = 99999;
+    for(int k=i;k<=j-1;k++)
     {
         a = calculate(M[i][k],k,M[k+1][j]);
         b = calculate(M[i][k],k,m[k+1][j]);
         c = calculate(m[i][k],k,M[k+1][j]);
-        d = calculate(m[i][k],k,m[k+1][j]);
-        mx = max(a,max(b,max(c,d)));
-        mn = min(a,max(b,max(c,d)));
+        t = calculate(m[i][k],k,m[k+1][j]);
+        mx = max(mx,max(a,max(b,max(c,t))));
+        mn = min(mn,min(a,min(b,min(c,t))));
     }
 }
-int parenthesis()
+float parenthesis()
 {
     for(int i=0;i<=n-1;i++)
     {
         m[i][i] = d[i];
         M[i][i] = d[i];
     }
-    int h[2];
+    /*
+    cout << "M[i][i]\tm[i][i]" << endl;
+    for(int i=0;i<=n-1;i++)
+    {
+        cout << M[i][i] << "\t" << m[i][i] << endl;
+    }
+    */
+    float h[2];
     int j=0;
-    for(int s=0;s<n-1;s++)
+    for(int s=1;s<=n-1;s++)
     {
         for(int i=0;i<n-s;i++)
         {
@@ -51,12 +62,22 @@ int parenthesis()
             m[i][j] = mn;
         }
     }
+    /*
+    cout << "max" << endl;
     for(int i=0;i<n;i++)
     {
         for(int j=0;j<n;j++)
-            cout << M[i][j] << " ";
+            cout << M[i][j] << "\t";
         cout << endl;
     }
+    cout << "min" << endl;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+            cout << m[i][j] << "\t";
+        cout << endl;
+    }
+    */
     return M[0][n-1];
 }
 
@@ -69,23 +90,27 @@ int main()
     for(int i=0;i<n;i++)
     {
         c[i] = s.at(i);
-        cout << c[i];
+        //cout << c[i];
     }
     for(int i=0;i<n;i++)
     {
         if(i%2 == 0)
-            d[i/2] = (int)c[i]-48;
+            d[i/2] = (float)((int)c[i]-48);
         else
-            op[i-1] = c[i];
+            op[(i-1)/2] = c[i];
     }
-    //n = (n-1)/2;
+    /*
     cout << "printing the arrays read:"<<endl;
     for(int i=0;i<=n/2;i++)
-        cout << d[i] << " ";
+        cout << d[i] << ", ";
     cout << endl;
-    for(int i=0;i<n;i++)
-        cout << op[i] << " ";
-    //cout << endl;
-    cout << parenthesis();
+    */
+    n = (n+1)/2;
+    /*
+    for(int i=0;i<n-1;i++)
+        cout << op[i] << ", ";
+    cout << "\n" << endl;
+    */
+    cout << parenthesis() << endl;
     return 0;
 }
