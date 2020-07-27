@@ -24,8 +24,8 @@ float calculate(float a,int b,float c)
 void MinandMax(int i,int j)
 {
     float a,b,c,t;
-    mx = -99999;
-    mn = 99999;
+    mx = -9999999;
+    mn = 9999999;
     for(int k=i;k<=j-1;k++)
     {
         a = calculate(M[i][k],k,M[k+1][j]);
@@ -52,7 +52,7 @@ float parenthesis()
     */
     float h[2];
     int j=0;
-    for(int s=1;s<=n-1;s++)
+    for(int s=1;s<=n-1;s++)//change here
     {
         for(int i=0;i<n-s;i++)
         {
@@ -111,6 +111,6 @@ int main()
         cout << op[i] << ", ";
     cout << "\n" << endl;
     */
-    cout << parenthesis() << endl;
+    cout << (int)parenthesis() << endl;
     return 0;
 }
