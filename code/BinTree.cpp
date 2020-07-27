@@ -59,13 +59,13 @@ void implementMaxHeap()
     {
         cout << "1 - push to heap, 2 - display heap; enter choice: ";
         cin >> ch;
-        switch(ch)
+        if(ch == 1)
         {
-            case 1:
             int key,val;
-            cout << "Enter key and data to be stored separated by a space";
+            cout << "Enter key and data to be stored separated by a space: ";
             cin >> key >> val;
             Node newnode(key,val);
+            elementCount++;
             if(elementCount == 0)
             {
                 lastEntered = newnode;
@@ -79,31 +79,28 @@ void implementMaxHeap()
                 else
                     lastEntered.right = &newnode;
                 newnode.parent = &lastEntered;
-                while(newnode.key > (*newnode.parent).key)
-                {
-                    int k = newnode.key,v=newnode.data,kp=(*newnode.parent).key,kv=(*newnode.parent).data;
-                    newnode.setKey(kp);
-                    newnode.setData(kv);
-                    newnode = *newnode.parent;
-                    newnode.setKey(k);
-                    newnode.setData(v);
-                }
-                //newnode.parent = &lastEntered;
-            }
-            break;
-            case 2:
-            displayHeap(&root,n);
-            break;
-            default:
-            cout << "Wrong choice\n";
-            break;
-            //display the heap:
-        }
+                   while(newnode.key > (*newnode.parent).key)
+                   {
+                       int k = newnode.key,v=newnode.data,kp=(*newnode.parent).key,kv=(*newnode.parent).data;
+                       newnode.setKey(kp);
+                       newnode.setData(kv);
+                       newnode = *newnode.parent;
+                       newnode.setKey(k);
+                       newnode.setData(v);
+                   }
+                   //newnode.parent = &lastEntered;
+               }
+           }
+           if(ch == 2)
+               displayHeap(&root,elementCount);
+           if((ch != 1)&&(ch != 2))
+               cout << "Wrong choice\n";
+           //display the heap:      
     }
 }
 
 int main()
 {
-    
+    implementMaxHeap();
     return 0;
 }
