@@ -1,0 +1,5 @@
+max heap methods:
+
+input the element to be pushed to the heap
+attach that node to any node in the 
+ins
