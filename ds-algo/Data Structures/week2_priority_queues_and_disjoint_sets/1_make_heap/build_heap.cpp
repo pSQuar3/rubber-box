@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 using std::vector;
 using std::cin;
 using std::cout;
@@ -17,9 +18,10 @@ class HeapBuilder
     {
         cout << swaps_.size() << "\n";
         for (int i = 0; i < swaps_.size(); ++i)
-        {
             cout << swaps_[i].first << " " << swaps_[i].second << "\n";
-        }
+        cout << "sorted heap: ";
+        for (int i = 0; i < data_.size(); ++i)
+            cout << data_[i] << " ";
     }
     void ReadData()
     {
@@ -29,14 +31,25 @@ class HeapBuilder
         for(int i = 0; i < n; ++i)
             cin >> data_[i];
     }
-
+    int parent(int i)
+    {
+        return floor(i/2);
+    }
+    int left(int i)
+    {
+        return 2*i;
+    }
+    int right(int i)
+    {
+        return 2*i+1;
+    }
     void GenerateSwaps()
     {
         swaps_.clear();
-        // The following naive implementation just sorts 
+        // The following naive implementation just sorts
         // the given sequence using selection sort algorithm
         // and saves the resulting sequence of swaps.
-        // This turns the given array into a heap, 
+        // This turns the given array into a heap,
         // but in the worst case gives a quadratic number of swaps.
         //
         // TODO: replace by a more efficient implementation
