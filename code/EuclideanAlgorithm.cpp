@@ -19,6 +19,6 @@ int main()
     //cout << "Enter the 2 numbers: ";
     long long int a, b;
     cin >> a >> b;
-    cout <<  gcd(a,b);
+    cout <<  (a*b)/gcd(a,b);
     return 0;
 }

@@ -14,6 +14,7 @@ class HeapBuilder
     private:
     vector<int> data_;
     vector< pair<int, int> > swaps_;
+    //int size=0;
     void WriteResponse() const
     {
         cout << swaps_.size() << "\n";
@@ -42,6 +43,24 @@ class HeapBuilder
     int right(int i)
     {
         return 2*i+1;
+    }
+    void minHeapify(int i)
+    {
+        int l = left(i),r=right(i);
+        int smallest;
+        if((l <= data_.size())&&(data_[l] < data_[i]))
+            smallest = l;
+        else
+            smallest = i;
+        if((r <= data_.size())&&(data_[r] < data_[i]))
+            smallest = r;
+        else
+            smallest = i;
+        if(smallest != i)
+        {
+            swap(data_[i],data_[smallest]);
+            minHeapify(smallest);
+        }
     }
     void GenerateSwaps()
     {
