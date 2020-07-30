@@ -57,7 +57,7 @@ console.log(onefruit.indexOf('an'));
 console.log(fruit.slice(2,4));//slices: [firstindex,lastindex)
 console.log(onefruit.slice(2,5));
 console.log(onefruit.replace('an','pwqwerrew'));
-console.log(fruit.replace('banana','oranges'));
+//console.log(fruit.replace('banana','oranges'));
 console.log(onefruit.toUpperCase());
 var g = 'e';
 g = g.toUpperCase();
@@ -69,3 +69,18 @@ let str = 'helloouu';
 
 for(let i=0;i<fruit.length;i++)
     console.log(fruit[i]);
+
+console.log("Testng phase:");
+var k = prompt("Enter your age");
+var h = (k < 18)? 1:2;
+switch(h)
+{
+    case 1:
+        alert("Age restricted");
+        break;
+    case 2:
+        console.log("Age approved");
+        break;
+    default:
+        console.log("Nope");
+}

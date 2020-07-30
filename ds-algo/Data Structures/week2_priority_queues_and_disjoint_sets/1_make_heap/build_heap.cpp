@@ -26,10 +26,11 @@ class HeapBuilder
     }
     void ReadData()
     {
+        cout << "enter elements\n";
         int n;
         cin >> n;
         data_.resize(n);
-        for(int i = 0; i < n; ++i)
+        for(int i = 0; i < n;i++)
             cin >> data_[i];
     }
     int parent(int i)
@@ -44,10 +45,12 @@ class HeapBuilder
     {
         return 2*i+1;
     }
+    int swapped_ele=0;
     void minHeapify(int i)
     {
         int l = left(i),r=right(i);
         int smallest;
+        swapped_ele = i;
         if((l <= data_.size())&&(data_[l] < data_[i]))
             smallest = l;
         else
@@ -56,15 +59,26 @@ class HeapBuilder
             smallest = r;
         else
             smallest = i;
+        swapped_ele = smallest;
         if(smallest != i)
         {
             swap(data_[i],data_[smallest]);
             minHeapify(smallest);
         }
     }
+    
+    void buildHeap()
+    {
+        for(int i=data_.size()/2;i>=0;i--)
+        {
+            minHeapify(i);
+            swaps_.push_back(make_pair(i,swapped_ele));
+        }
+    }
     void GenerateSwaps()
     {
         swaps_.clear();
+        cout << "generating swaps...  ";
         // The following naive implementation just sorts
         // the given sequence using selection sort algorithm
         // and saves the resulting sequence of swaps.
@@ -72,6 +86,7 @@ class HeapBuilder
         // but in the worst case gives a quadratic number of swaps.
         //
         // TODO: replace by a more efficient implementation
+        /*
         for (int i = 0; i < data_.size(); ++i)
             for (int j = i + 1; j < data_.size(); ++j)
             {
@@ -81,8 +96,10 @@ class HeapBuilder
                     swaps_.push_back(make_pair(i, j));
                 }
             }
+        */
+        buildHeap();
+        cout << "Done!!\n";
     }
-
     public:
     void Solve()
     {
