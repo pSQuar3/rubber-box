@@ -1,10 +1,12 @@
 #include <iostream>
-#include <vector>
+#include <bits/c++io.h>
 #include <algorithm>
-
-using std::vector;
-using std::cin;
-using std::cout;
+#include <cstdlib>
+#include <map>
+#include <string>
+#include <vector>
+#include <cmath>
+using namespace std;
 
 class JobQueue
 {
@@ -33,17 +35,23 @@ class JobQueue
         assigned_workers_.resize(jobs_.size());
         start_times_.resize(jobs_.size());
         vector<long long> next_free_time(num_workers_, 0);
+        int j = 0;
         for (int i = 0; i < jobs_.size();i++)
         {
             int duration = jobs_[i];
-            int next_worker = 0;
-            for (int j = 0; j < num_workers_;j++)
+            int next_worker = 0,preVj=j;
+            bool b = true;
+            while(j != preVj || b)
             {
+                b = false;
                 if (next_free_time[j] < next_free_time[next_worker])
                 {
                     next_worker = j;
-                    j = num_workers_;
                 }
+                if(j != num_workers_-1)
+                    j++;
+                else
+                    j = 0;
             }
             assigned_workers_[i] = next_worker;
             start_times_[i] = next_free_time[next_worker];

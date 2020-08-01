@@ -1,17 +1,30 @@
 #include <iostream> 
 #include <vector>
 using namespace std; 
-int arr[100000];
+vector<int> arr;
 int n;
+bool heaptype = true;
+//  NOTE: true  = Max-Heap
+//        false = Min-Heap
 vector<pair<int,int>> v;
-void heapify(int i) 
+bool compareNums(int a, int b)
+{
+    bool decision=false;
+    if(a < b)
+        decision = true;
+    if(heaptype)
+        decision = !decision;
+    return decision;
+}
+
+void heapify(int i)
 { 
     int largest = i;
     int l = 2 * i + 1; 
     int r = 2 * i + 2;  
-    if (l < n && arr[l] < arr[largest]) 
+    if (l < n && compareNums(arr[l],arr[largest]))
         largest = l; 
-    if (r < n && arr[r] < arr[largest]) 
+    if (r < n && compareNums(arr[r],arr[largest])) 
         largest = r; 
     if (largest != i)
     {
@@ -28,6 +41,12 @@ void buildHeap()
 } 
 void printHeap() 
 {
+    /*
+    cout << "the heap is:" << endl;
+    for(int i=0;i<n;i++)
+        cout << arr[i] << " ";
+    cout << "\n";
+    */
     cout << v.size() << endl;
     for (auto i = v.begin();i!=v.end();i++) 
         cout << i->first  << " " << i->second << endl; 
