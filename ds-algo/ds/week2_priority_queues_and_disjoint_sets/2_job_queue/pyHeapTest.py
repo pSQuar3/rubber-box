@@ -1,9 +1,7 @@
 import sys
 import heapq
-
 def read(): 
     return [int(i) for i in sys.stdin.readline().strip().split()]
-
 n, m = read()
 arr = read()
 
