@@ -15,6 +15,7 @@ class JobQueue
     vector<int> jobs_;
     vector<int> assigned_workers_;
     vector<long long> start_times_;
+    typedef pair<int, int> pi;
     void WriteResponse() const
     {
         for (int i = 0; i < jobs_.size(); ++i)
@@ -32,6 +33,8 @@ class JobQueue
     void AssignJobs()
     {
         // TODO: replace this code with a faster algorithm.
+        // TODO: try making a binary min heap of the processors and their currently running jobs.
+        //       extraction of the proc. no. (key) with min value (execution time of last job) done in constant time
         assigned_workers_.resize(jobs_.size());
         start_times_.resize(jobs_.size());
         vector<long long> next_free_time(num_workers_, 0);
