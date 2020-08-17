@@ -1,6 +1,9 @@
 #include <iostream>
 #include <new>
 using namespace std;
+
+struct K
+
 int main()
 {
     //how to allocate an array
