@@ -21,11 +21,10 @@ struct Bracket
     char type;
     int position;
 };
-
 int main()
 {
     string text;
-    cin >> text;
+    cin >> text;e
     int decree=-1;
     stack <Bracket> opb;
     for(int i=0;i<text.length();i++)

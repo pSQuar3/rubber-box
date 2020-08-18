@@ -1,13 +1,12 @@
 #include <iostream>
 #include <new>
 using namespace std;
-
-struct K
-
 int main()
 {
     //how to allocate an array
     int *p, i;
+    int h;
+    cin >> h;
     try
     {
         p = new int [10]; // allocate 10 integer array
@@ -17,7 +16,7 @@ int main()
         cout << "Allocation Failure\n";
         return 1;
     }
-    for(i=0; i<10; i++ )
+    for(i=0;i<10;i++)
         p[i] = i;
     for(i=0; i<10; i++)
         cout << p[i] << " ";
