@@ -9,10 +9,12 @@
 
 using namespace std;
 
+static int count=0;
 class Node
 {
     public:
-    int data,count;
+    int data;
+    
     Node *next;
     Node()
     {
@@ -24,18 +26,28 @@ class Node
         count++;
     }
 };
-Node first=NULL;
+Node first,last;
 void insert(int n)
 {
     Node ob(n);
-    ob.next = &first;
-    first = ob;
+    if(count == 1)
+        first = ob;
+    else
+    {
+        ob.next = &last;
+        last = ob;
+    }
+    ob.next = &last;
+    last = ob;
 }
 void display()
 {
-    for(Node *k = &first;k->next != NULL;k = k->next)
+
+    for(Node *k = &first;count > 0;k = k->next)
     {
-        cout << k->data << " ";
+        cout << (long)(k->next) << " ";
+        cout << k->data << "\n";
+        count--;
     }
     /*if(k->next != NULL)
         display(k->next);*/
