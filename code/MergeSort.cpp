@@ -43,8 +43,6 @@ void Merge(int *a, int low, int high, int mid)
 		k++;
 		j++;
 	}
- 
- 
 	// Assign sorted data stored in temp[] to a[].
 	for (i = low; i <= high; i++)
 	{

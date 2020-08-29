@@ -1,68 +1,51 @@
 #include <iostream>
-#include <bits/c++io.h>
 #include <new>
-#include <cstdlib>
-#include <map>
-#include <string>
-#include <vector>
-#include <cmath>
 
 using namespace std;
-
-static int count=0;
-class Node
+struct Node
 {
-    public:
     int data;
-    
     Node *next;
-    Node()
-    {
-        data = 0;
-    }
-    Node(int n)
-    {
-        this->data = n;
-        count++;
-    }
 };
-Node first,last;
+Node *HEAD = NULL;
 void insert(int n)
 {
-    Node ob(n);
-    if(count == 1)
-        first = ob;
-    else
-    {
-        ob.next = &last;
-        last = ob;
-    }
-    ob.next = &last;
-    last = ob;
+    Node *k = (Node*)malloc(sizeof(Node));
+    k->data = n;
+    k->next = HEAD;
+    HEAD = k;
 }
 void display()
 {
-
-    for(Node *k = &first;count > 0;k = k->next)
+    for(Node *j = HEAD; j != NULL;j = j->next)
+        cout << j->data << " ";
+    cout << endl;
+}
+void UltaFy()
+{
+    //reversing a linked list
+    Node *x = NULL,*k=NULL;
+    cout << "reversed" << endl;
+    Node *i = HEAD;
+    while(i != NULL)
     {
-        cout << (long)(k->next) << " ";
-        cout << k->data << "\n";
-        count--;
+        cout << "data = " << i->data << "\n";
+        k = i->next;
+        i->next = x;
+        x = i;
+        i = k;
     }
-    /*if(k->next != NULL)
-        display(k->next);*/
+    HEAD = x;
 }
 int main()
 {
     int n;
+    cout << "Enter limit: ";
     cin >> n;
     for(int i=0;i<n;i++)
-    {
-        int k;
-        cin >> k;
-        insert(k);
-    }
-    cout << "elements of the linked list:" << endl;
+        insert(i+1);
+    display();
+    UltaFy();
     display();
     return 0;
 }
