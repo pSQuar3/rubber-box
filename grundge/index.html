@@ -1,14 +1,111 @@
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Pratyay Pande"/>
+    <meta name="keywords" content="beginner, html"/>
+	<title>HTML5 practice  file</title>
 </head>
 <body>
-    <p id="pid">"This is the p tag text"</p>
+    <basefont face="courier, Times New Roman" size="4" color="ff0000">
+    <embed src = "colo.png" width = "200" height = "200" >
+         <noembed><img src = "colo.png" alt = "Alternative Media" ></noembed>
+    </embed>
+    <p id="pid">
+        This is the p tag text
+        <ol>
+            <li>I am bee</li>
+            <li>I drink tea</li>
+            <li>Wo'nt you come and dance with me</li>
+    </p>
+    <form >
+        <input type="image" src="linkedin.png" ismap="#lkI" width="40" height="40" href="https://www.linkedin.com/in/pratyay-pande"/>
+        First name: <input type = "text" name = "first_name" />
+        <br>
+        Last name: <input type = "text" name = "last_name" />
+        <br>
+        Age: <input type="age" name="age_client" value="18"/>
+        <br>
+        Password: <input type="password" name"psswd" maxlength="10"/>
+        <br>
+        Description: <br/>
+        <textarea rows="5" cols="50" name="description" value="I am awesome">
+            Enter description here...
+        </textarea>
+       <input type = "checkbox" name = "maths" value = "on"> Maths
+        <input type = "checkbox" name = "physics" value = "on"> Physics
+        <br>
+        <input type="file" name="File Upload" accept="cpp/*"/>
+    </form>
+    <map name="lkI">
+        <a href="https://www.linkedin.com/in/pratyay-pande/" alt="Linked"/>
+    </map>
+    <p>
+        Click on the proper text
+    </p>
+    <!-- Image map test usmap -->
+
+    <img src="colo.png" width="100" height="100" alt="Colorurful image" usemap="#testimg"/>
+    <map name="testimg">
+        <area shape="circle" coords="50,50,20" href="https://linkedin.com" alt="LinkedIn" target="_blank"/>
+        <area shape = "rectangle" coords="0,0,10,10" href="https://github.com/pSQuar3/" alt="GitHub" target="_blank"/>
+    </map>
+    <img src="linkedin.png" width="40" height="40" alt="LinkedIn" usemap="#linkedin"/>
+    <map name="linkedin">
+        <area shape="rectangle" coords="0,0,50,50" href="https://www.linkedin.com/in/pratyay-pande/" alt="LinkedIn" target="_blank"/>
+    </map>
+    <img src="github.png" width="40" height="40" alt="GitHub" usemap="#git"/>
+    <map name="git">
+        <area shape="circle" coords="20,20,20" href="https://github.com/pSQuar3/" alt="LinkedIn" target="_blank"/>
+    </map>
+
 	<script src="home.js"></script>
     <script>
         //console.log(JSON.parse(students.json));
     </script>
+    <a  href="https://linkedin.com" target="_blank" border="3">
+        <img ismap id="kak" src="kakashi-transparent.png" alt="Kakashi Hatake" width="130" height = "200" border="3" align="right"/>
+    </a>
+    <table border="10" background="kakashi-transparent.png" width="700" height="670">
+        <caption>Information on Student</caption>
+        <thead>
+            <tr>
+                <td colspan="2" align="center">This is a test table</td>
+            </tr>
+        </thead>
+        <tfoot colspan="2">
+            <tr>
+                <td height="900">This is the footer</td>
+                <td>Hello. this is a test</td>
+            </tr>
+        </tfoot>
+        <tbody>
+        <tr>
+            <div style="color:red" bgcolor="#12A35E">
+            <th style="color:red" align="center">Name</th>
+            <th align="center">DOB</th>
+            </div>
+        </tr>
+        <tr>
+            <td rowspan="2">
+                Pratyay Pande
+                <ul type = "square">
+                    <li>beetroot</li>
+                    <li>tomato</li>
+                    <li>jojo</li>
+                </ul>
+                <dl>
+                    <dt><b>Hello this is HTML</b></dt>
+                    <dd>This means that you are a moron and HTML is pretty good</dd>
+                </dl> 
+                <a href="https://github.com/pSQuar3/" target="_blank">My GitHub</a>
+            </td>
+            <td align="center" color="white">6th October 1999</td>
+        </tr>
+        <tr>
+            <td text="white" bgcolor="teal" size="7"><font size="7" color="#FFFFFF" face="Comic Sans MS, Arial, Lucidia Console">Hello</font></td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>

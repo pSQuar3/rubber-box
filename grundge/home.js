@@ -77,6 +77,8 @@ switch(h)
 {
     case 1:
         alert("Age restricted");
+        console.log("Not allowed access to image");
+        document.getElementByID("kaki").innerHTML = "";
         break;
     case 2:
         console.log("Age approved");
