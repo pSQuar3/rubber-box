@@ -1,53 +1,61 @@
 import java.util.*;
 import java.io.*;
 
-public class is_bst_hard {
-    class FastScanner {
+public class is_bst_hard
+{
+    class FastScanner
+    {
         StringTokenizer tok = new StringTokenizer("");
         BufferedReader in;
 
-        FastScanner() {
+        FastScanner()
+        {
             in = new BufferedReader(new InputStreamReader(System.in));
         }
 
-        String next() throws IOException {
+        String next() throws IOException
+        {
             while (!tok.hasMoreElements())
                 tok = new StringTokenizer(in.readLine());
             return tok.nextToken();
         }
-        int nextInt() throws IOException {
+        int nextInt() throws IOException
+        {
             return Integer.parseInt(next());
         }
     }
 
-    public class IsBST {
-        class Node {
+    public class IsBST
+    {
+        class Node
+        {
             int key;
             int left;
             int right;
 
-            Node(int key, int left, int right) {
+            Node(int key, int left, int right)
+            {
                 this.left = left;
                 this.right = right;
                 this.key = key;
             }
         }
-
         int nodes;
         Node[] tree;
-
-        void read() throws IOException {
+        void read() throws IOException
+        {
             FastScanner in = new FastScanner();
             nodes = in.nextInt();
             tree = new Node[nodes];
-            for (int i = 0; i < nodes; i++) {
+            for (int i = 0; i < nodes; i++)
+            {
                 tree[i] = new Node(in.nextInt(), in.nextInt(), in.nextInt());
             }
         }
-
-        boolean isBinarySearchTree() {
+        boolean isBinarySearchTree()
+        {
           // Implement correct algorithm here
-          return true;
+            return true;
         }
     }
 

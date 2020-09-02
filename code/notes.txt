@@ -1,5 +1,172 @@
 max heap methods:
 
 input the element to be pushed to the heap
-attach that node to any node in the 
+attach that node to any node in the
 ins
+
+4 0 1
+2 3 0
+k = 1
+c = 2;
+
+a = 2 2
+b = 2 2
+
+min(1,0)
+
+k = 0
+
+36
+0 0 1
+0 0 1
+0 0 1
+0 1 0
+0 0 1
+1 0 0
+0 0 2
+0 0 2
+0 0 2
+0 1 1
+0 0 2
+0 2 0
+0 0 2
+1 0 1
+0 0 2
+1 1 0
+0 0 2
+2 0 0
+0 0 3
+0 0 3
+0 0 3
+0 1 2
+0 0 3
+0 2 1
+0 0 3
+0 3 0
+0 0 3
+1 0 2
+0 0 3
+1 1 1
+0 0 3
+1 2 0
+0 0 3
+2 0 1
+0 0 3
+2 1 0
+0 0 3
+3 0 0
+0 0 4
+0 0 4
+0 0 4
+0 1 3
+0 0 4
+0 2 2
+0 0 4
+0 3 1
+0 0 4
+0 4 0
+0 0 4
+1 0 3
+0 0 4
+1 1 2
+0 0 4
+1 2 1
+0 0 4
+1 3 0
+0 0 4
+2 0 2
+0 0 4
+2 1 1
+0 0 4
+2 2 0
+0 0 4
+3 0 1
+0 0 4
+3 1 0
+0 0 4
+4 0 0
+0 0 5
+0 0 5
+0 0 5
+0 1 4
+
+b = 2 2 1 1 1 1 1 1 1 1 0 0
+a = 2 2 2 2 2 2 1 1 1 0 0 
+k = min(a[2],b[1])
+
+19
+21 1 2
+15 3 4
+39 5 6
+7 7 8
+18 9 10
+30 11 12
+42 13 14
+2 15 16
+11 17 18
+16 -1 -1
+19 -1 -1
+25 -1 -1
+36 -1 -1
+40 -1 -1
+43 -1 -1
+1 -1 -1
+5 -1 -1
+8 -1 -1
+12 -1 -1
+CORRECT
+
+19
+21 1 2
+15 3 4
+39 5 6
+7 7 8
+18 9 10
+30 11 12
+42 13 14
+2 15 16
+11 17 18
+16 -1 -1
+19 -1 -1
+25 -1 -1
+36 -1 -1
+40 -1 -1
+43 -1 -1
+1 -1 -1
+5 -1 -1
+8 -1 -1
+17 -1 -1
+INCORRECT
+
+
+METHOD:
+
+TREE IS VALID IF
+
+CASE 1: CURRENT NODE IS LEFT CHILD OF ITS PARENT
+    
+    left child of current node is smaller than the current node
+    right child of the current node lies in the range (current node, root)
+
+CASE 2: CURRENT NODE IS RIGHT CHILD OF ITS PARENT
+
+    left child of current node lies in the range (root, current node)
+    right child of the current node is larger than current node
+
+CASE 3: CURRENT NODE IS ROOT NODE
+
+    left child of root less than root
+    right child of root greater than root
+
+functions:
+
+bool comp(int a, int b)
+{
+    return (a > b);
+}
+bool betChk(int l1,int l2, int v)
+{
+    return (l1 < v && v < l2);
+}
+
+
