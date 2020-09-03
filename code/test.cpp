@@ -8,26 +8,25 @@
 #include <cmath>
 using namespace std;
 
-void display(string a)
-{
-    for(auto i = a.begin();i<a.end();i++)
-    {
-        char k = ' ';
-        cout << k << endl;
-        
-    }
-}
 int main()
 {
-    string a = "Pratyay Pande";
-    //display(st);
-    string s,t;
-    /*cin >> s >> t;
-    //cout << sizeof(s)/sizeof(s[0]) << " " << sizeof(t)/sizeof(t[0]) << endli;
-    auto i = s.begin();
-    cout << *i << endl;
-    cout << *(i+1) << endl;
-    cout << *(i+2) << endl;*/
-    cout << (2%3) << endl;
+    char c[100];
+    string s;
+    cin >> c;
+    int count=0;
+    char *ch = c;
+    while(*ch !='\0')
+    {
+        cout << (int)*ch << " ";
+        ch++;
+        count++;
+    }
+    cout << "Using array indexes: " << endl;
+    for(int i=0;i<count;i++)
+    {
+        cout << (int)c[i] << " ";
+    }
+    cout << "\n";
+    cout << sizeof(c) << endl;
     return 0;
 }
