@@ -67,8 +67,10 @@ void kosaraju()
     initVis();
     secondKRaju();
 }
-void solve()
+int main()
 {
+    //final DAG formed is stored in final_DAG graph
+    ios::sync_with_stdio(0);
     cin >> V >> E;
     int x,y;
     for(int i=0;i<E;i++)
@@ -78,10 +80,5 @@ void solve()
     }
     kosaraju();
     cout << ind << endl;
-}
-int main()
-{
-    ios::sync_with_stdio(0);
-    solve();
     return 0;
 }
