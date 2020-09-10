@@ -1,5 +1,8 @@
 #include <iostream>
-using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
+
 long long int gcd(long long int a, long long int b)
 {
     long long int t;
