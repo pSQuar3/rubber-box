@@ -42,7 +42,8 @@ void kosaraju_dfs_2(int x)
     visited[x] = true;
     for (int i=0;i<graf[x].rev_adj.size();i++)
     {
-        if (!visited[graf[x].rev_adj[i]]) kosaraju_dfs_2(graf[x].rev_adj[i]);
+        if (!visited[graf[x].rev_adj[i]])
+            kosaraju_dfs_2(graf[x].rev_adj[i]);
     }
 }
 
