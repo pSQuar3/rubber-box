@@ -6,21 +6,58 @@ using std::cout;
 using std::vector;
 using std::ios_base;
 using std::unordered_map;
-using std::map;
 using std::endl;
+using std::queue;
+int n,m;
 unordered_map<int, vector<int>> gph;
-int n;
-bool checkSpruce(int i)
+unordered_map<int, int> rev_gph;
+void bfs(int x)
 {
-    //check with BFS, not DFS. count the number of leaves
-    bool b = false;
-    if(gph[i].size() == 0 || gph[i].size() >= 3 || (i == 1 && gph[1].size() >= 2))
-        b = true;
-    for(auto h=gph[i].begin();b && h != gph[i].end();h++)
+    //finds the minimum-distance of y from x
+    int u;
+    unordered_map<int,int> dist;
+    for(int i=1;i<=n;i++)
+        dist[i] = -1;
+    dist[x] = 0;
+    queue<int> qu;
+    qu.push(x);
+    unordered_map<int, int> parents;
+    parents[1] = 0;
+    while(!qu.empty())
     {
-        b = checkSpruce(*h);
+        u = qu.front();
+        qu.pop();
+        if(gph[u].size() > 0)
+            parents[u] = 0;
+        //cout << "discovered edge = " << u << endl;
+        for(auto r = gph[u].begin();r!=gph[u].end();r++)
+        {
+            if(dist[*r] == -1)//marker if node r is unchecked
+            {
+                qu.push(*r);
+                dist[*r] = dist[u]+1;
+                if(gph[*r].size() == 0)
+                    parents[u]++;
+            }
+        }
     }
-    return b;
+    bool b = true;
+    //cout << "Data recorded: " << endl;
+    for(auto t=parents.begin();b && t!=parents.end();t++)
+    {
+        //cout << t->first << " -> " << t->second << endl;
+        if(t->second <= 2)
+            b = false;
+    }
+    if(b)
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
+}
+void insertGph(int x, int y)
+{
+    gph[x].push_back(y);
+    rev_gph[y] = x;
 }
 void solve()
 {
@@ -29,9 +66,9 @@ void solve()
     for(int i=1;i<n;i++)
     {
         cin >> x;
-        gph[x].push_back(i+1);
+        insertGph(x,i+1);
     }
-    cout << "output = " << checkSpruce(1) << endl;
+    bfs(1);
 }
 int main()
 {
