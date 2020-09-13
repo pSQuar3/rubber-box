@@ -441,8 +441,9 @@ int countNotes(int n)
 
 void solve()
 {
-    lli n,nts=0;
-    cin >> n;
+    lli n=2*MX,nts=0;
+    //cin >> n;
+    cout << n << " -> ";
     int den[] = {1,5,10,20,100};
     if(n > MX)
     {
