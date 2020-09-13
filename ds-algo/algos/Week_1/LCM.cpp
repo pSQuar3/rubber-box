@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
-
-long long int gcd(long long int a, long long int b)
+#define lli long long int
+lli gcd(lli a, lli b)
 {
-    long long int t;
+    lli t;
     // gcd(a,b) = gcd(b,a%b)
     while((a != 0)&&(b != 0))
     {
@@ -17,7 +17,7 @@ long long int gcd(long long int a, long long int b)
 
 int main()
 {
-    long long int a,b;
+    lli a,b;
     cin >> a >> b;
     if(b > a)
     {
@@ -25,7 +25,7 @@ int main()
         b = a - b;
         a = a - b;
     }
-    long long int l = (a*b)/gcd(a,b);
+    lli l = (a*b)/gcd(a,b);
     cout << l;
     return 0;
 }
