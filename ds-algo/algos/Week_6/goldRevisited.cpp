@@ -8,6 +8,7 @@
 #include <cmath>
 using namespace std;
 long int value[10001][301];
+
 int knapsack(int *s,int W,int n)
 {
     //long int value[W+1][n+1];

@@ -23,15 +23,22 @@ void solve()
         current += a[i];
         sm[current].push_back(i);
     }
+    current = 0;
     for(auto i = sm.begin();i!=sm.end();i++)
     {
         if(sm[i->first].size() == 2)
         {
+            if(current == 0)
+            {
+                cout << "Subrrays: " << endl;
+                current = 1;
+            }
+            cout << "{ ";
             int i1 = sm[i->first][0];
             int i2 = sm[i->first][1];
             for(int k=i1+1;k<=i2;k++)
                 cout << a[k] << " ";
-            cout << "\n";
+            cout << "}\n";
         }
     }
 }
