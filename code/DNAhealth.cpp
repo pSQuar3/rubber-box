@@ -43,7 +43,15 @@ struct hash_pair
 //currently mapped s: pair<any dt,any dt>->bool with custom hash function as hash_pair
 //change data types of pair and mapped value accordingly
 unordered_map<pair<int,int>,bool,hash_pair> pair_mp;
-
+vector<string> g;
+int h[MX];
+int n,s;
+struct DNA
+{
+    int first;
+    int last;
+    string d;
+};
 struct Sorting
 {
     int n,a[MX];
@@ -138,6 +146,7 @@ struct Heap     // 0-indexed heap
 {
     vector<int> arr; // holds the elements of the array - change to int if required
     bool heaptype;
+    vector<int> sorted; // holds sorted array
     //  NOTE: true  = Min-Heap
     //        false = Max-Heap
     Heap(string s,int k)//  this one is preferrable
@@ -266,6 +275,24 @@ struct Heap     // 0-indexed heap
             cout << arr[i] << " ";
         cout << "\n";
     }
+    void buildSorted()
+    {
+        for(int i=0;i<arr.size();i++)
+        {
+            sorted.push_back(arr[0]);
+            if(heaptype)
+                arr[0] = INT_MAX;
+            else
+                arr[0] = INT_MIN;
+            siftDown(0);
+        }
+    }
+    void displaySorted()
+    {
+        for(int i=0;i<sorted.size();i++)
+            cout << sorted[i] << " ";
+        cout << endl;
+    }
 };
 struct Graph
 {
@@ -371,7 +398,7 @@ struct Graph
                 {
                     qu.push(*r);
                     dist[*r] = dist[u]+1; //computing dist. of node. change map to bool if distance is not needed
-                    //write relevant code here
+                        //write relevant code here
 
                 }
             }
@@ -389,26 +416,100 @@ int gcd(int a,int b)
     }
     return a+b;
 }
+unordered_map<string,int> gene_health;
+DNA ob[MX];
+
+int countHealth(int s, int l, string q)
+{
+    int cnt[q.size()+1];
+    cnt[0] = 0;
+    for(int i=1;i<=q.length();i++)
+    {
+        cnt[i] = 0;
+        for(int j = s;j <= l;j++)
+        {
+            if(i >= g[j].size())
+            {
+                int x = cnt[i-g[i].size()] + h[i];
+                if(x > cnt[i])
+                    cnt[i] = x;
+            }
+        }
+    }
+    return cnt[q.size()];
+}
+vector<string> split_string(string input_string)
+{
+    string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) { return x == y and x == ' '; });
+    input_string.erase(new_end, input_string.end());
+    while (input_string[input_string.length() - 1] == ' ')
+    {
+        input_string.pop_back();
+    }
+    vector<string> splits;
+    char delimiter = ' ';
+    size_t i = 0;
+    size_t pos = input_string.find(delimiter);
+    while (pos != string::npos)
+    {
+        splits.push_back(input_string.substr(i, pos - i));
+        i = pos + 1;
+        pos = input_string.find(delimiter, i);
+    }
+    splits.push_back(input_string.substr(i, min(pos, input_string.length()) - i + 1));
+    return splits;
+}
 void solve()
 {
-    int n;
     cin >> n;
-    vector<int> arr(n);
-    for(int i=0;i<n;i++)
-        cin >> arr[i];
-    int ct = arr[0];
-    for(int i=1;i<arr.size();i++)
+    /*
+    string bf;
+    cin >> bf;
+    
+    int ci = 0;
+    */
+    /*
+    g[0] = "";
+    for(auto i = bf.begin();i!= bf.end();i++)
     {
-        if(arr[i] == ct)
-            arr[i] = arr[0] - 1;
+        if(*i != ' ')
+            g[ci].push_back(*i);
         else
-            ct = arr[i];
+        {
+            ci++;
+            g[ci] = "";
+        }
+        
     }
-    for(vector<int>::iterator it = arr.begin();it!= arr.end();it++)
+    */
+    //g = split_string(bf);
+    g = {"a", "b", "c", "aa", "d", "b"};
+    int ci = 0;
+    for(int i=0;i<n;i++)
     {
-        if(*it != arr[0]-1)
-            cout << *it << " ";
+        //cerr << "entered accepting block" << endl;
+        cin >> h[i];
+        //gene_health[g[i]] = h[i];
     }
+    cin >> s;
+    for(int i=0;i<s;i++)
+    {
+        //cerr << "initilalising objects" << endl;
+        DNA w;
+        cin >> w.first >> w.last >> w.d;
+        ob[i] = w;
+    }
+    //completed accepting data elements
+    //now evaluating each case
+    int mx = -1,mn=INT_MAX;
+    for(int i=0;i<s;i++)
+    {
+        ci = countHealth(ob[i].first,ob[i].last,ob[i].d);
+        cout << "ci = " << ci << endl;
+        mx = max(ci,mx);
+        mn = min(ci,mn);
+    }
+    cout << mn << " " << mx << endl;
 }
 int main()
 {
