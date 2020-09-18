@@ -1,0 +1,16 @@
+The problem statement goes as follows:
+Leo lives on the top floor of his hostel and the water cooler is on the bottom floor
+Since the doctor told him to drink a lot of water, he keeps n water bottles with himself
+
+The i-th (0 <= i < n) water bottle has max capacity cap[i] (int) and current volume of water in
+the bottle as v[i].
+
+To fill water in the bottles, he needs to carry the bottles downstairs and fill the bottles from the cooler.
+Before going downstairs, he does the following operation:
+
+> he selects any 2 bottles i and j, (0 <= i,j < n) and transfers the contents of bottle i to bottle j
+
+he repeats this operation until there is at most 1 partially filled bottle
+
+Given the number of bottles n, with the i-th bottle having a maximum capacity of cap[i] and current volume 
+v[i] (v[i] <= cap[i]), find the minimum number of times he will have to do the operation
