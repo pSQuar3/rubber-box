@@ -3,10 +3,7 @@
 #define sp1(k), cout << k << endl;
 using std::cin;
 using std::cout;
-using std::vector;
 using std::ios_base;
-using std::unordered_map;
-using std::map;
 using std::endl;
 #define MX 100000
 int T,B,N,nH,A[MX],minH[MX];
@@ -16,7 +13,6 @@ void solve()
     for(int i=0;i<T;i++)
     {
         cin >> N >> B;
-        
         for(int j=0;j<N;j++)
         {
             cin >> A[j];
@@ -34,21 +30,6 @@ void solve()
         }
         cout << minH[B] << endl;
     }
-    /*
-    for(int i=1;i<=money;i++)
-    {
-        minCoins[i] = money+1;
-        for(int j=0;j<3;j++)
-        {
-            if(i >= coins[j])
-            {
-                numCoins = minCoins[i-coins[j]]+1;
-                if(numCoins < minCoins[i])
-                    minCoins[i] = numCoins;
-            }
-        }
-    }
-    */
 }
 int main()
 {
