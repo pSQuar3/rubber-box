@@ -12,6 +12,24 @@ using std::swap;
 using std::make_pair;
 using std::cerr;
 int n,m;
+
+using std::hash;
+using std::pair;
+using std::make_pair;
+struct hash_pair
+{
+    template <class T1, class T2>
+    size_t operator()(const pair<T1, T2>& p) const
+    {
+        auto hash1 = hash<T1>{}(p.first);
+        auto hash2 = hash<T2>{}(p.second);
+        return hash1 ^ hash2;
+    }
+};
+//currently mapped s: pair<any dt,any dt>->bool with custom hash function as hash_pair
+//change data types of pair and mapped value accordingly
+unordered_map<pair<int,int>,long long,hash_pair> mp;
+
 struct CustomHeap
 {
     struct Data
@@ -74,7 +92,7 @@ struct CustomHeap
             siftDown(nxt);
         }
     }
-    Data initialiseNode(int distValue, int node)
+    Data initialiseNode(long long distValue, int node)
     {
         Data ob;
         ob.distvalue = distValue;
@@ -140,7 +158,7 @@ struct CustomHeap
     }
 };
 unordered_map<int,vector<int>> adj;
-unordered_map<int,vector<int>> cost;
+unordered_map<int,vector<long long>> cost;
 
 long long distance(int s, int t)
 {
@@ -206,14 +224,20 @@ int main()
     //vector<vector<int> > cost(n, vector<int>());
     for (int i = 0; i < m; i++)
     {
-        int x, y, w;
+        int x, y;
+        long long w;
         std::cin >> x >> y >> w;
         adj[x - 1].push_back(y - 1);
         cost[x - 1].push_back(w);
+        mp[make_pair(x,y)] = w;
     }
     int s, t;
     std::cin >> s >> t;
     s--;
     t--;
-    std::cout << distance(s, t);
+    if(m > 0)
+        std::cout << distance(s, t) << endl;
+    else
+        std::cout << -1 << endl;
+    return 0;
 }
