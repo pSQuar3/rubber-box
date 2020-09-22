@@ -2,35 +2,29 @@
 using std::vector;
 int n,m;
 
-int negative_cycle(vector<vector<int>> &adj, vector<vector<int>> &cost)
+bool negative_cycle(vector<vector<int>> &adj, vector<vector<int>> &cost)
 {
-    //write your code here
-    int dist[n];
-    int x;
-    std::cin >> x;
+    long long int dist[n];
     for(int i=0;i<n;i++)
-    {
         dist[i] = INT_MAX;
-    }
     dist[0] = 0;
-    /*for(int e=0;e<n;e++)
-    {*/
+    bool ceck = false;
     for(int v = 0;v < n-1;v++)
-        for(int i=0;i<n;i++)
+    {
+        ceck = false;
+        for(size_t i = 0;i < (long unsigned int)adj.size();i++)
         {
-            for(int j = 0;j < (int)adj[i].size();i++)
+            for(size_t j = 0;j < (long unsigned int)adj[i].size();j++)
             {
-                //  i -> value of the node
-                std::cout << "i = " << i << " node = " << adj[i][j] << std::endl;
                 if(dist[adj[i][j]] > dist[i] + cost[i][j])
                 {
                     dist[adj[i][j]] = dist[i] + cost[i][j];
+                    ceck = true;
                 }
             }
         }
-    //}
-    std::cout << "distance = " << dist[x] << std::endl;
-    return 0;
+    }
+    return ceck;
 }
 
 int main()
