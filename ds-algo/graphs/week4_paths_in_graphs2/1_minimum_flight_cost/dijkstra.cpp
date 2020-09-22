@@ -26,6 +26,8 @@ int distance(vector<vector<int> > &adj, vector<vector<int> > &cost, int s, int t
 				my_queue.push(make_pair(adj[vertex_idx][i], dist));
 			}
 		}
+        if(vertex_idx == t)
+            break;
 	}
 	return ((distances[t] < MY_MAX_INT) ? distances[t]: -1);
 }
