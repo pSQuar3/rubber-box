@@ -61,3 +61,7 @@ for i=0 to n-1
     v[i] = false;
 
 
+
+
+
+call procedure split
