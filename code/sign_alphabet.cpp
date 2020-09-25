@@ -13,7 +13,7 @@ using std::stack;
 using std::ios_base;
 void solve()
 {
-    
+    cout << "Hello" << endl;
 }
 
 int main()
