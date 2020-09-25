@@ -35,7 +35,11 @@ struct Node
     Node(char c)
     {
         this_char = c;
-        cerr << "storing character ->" << c << "<- character" << endl;
+//        cerr << "storing character ->" << c << "<- character" << endl;
+    }
+    void insertChars(char ch)
+    {
+
     }
     bool find(char c)
     {
@@ -44,57 +48,51 @@ struct Node
 };
 Node makeTrie()
 {
-    
-    //white in dark : oceanic_material
     Node trie(' ');
     for(int i=0;i<n;i++)
     {
         Node *q = &trie;
+//        cerr << "Node= " << (long long)q << endl;
         for(int j=0;j<(int)p[i].size();j++)
         {
             if(q->find(p[i][j]))
                 q = q->nextNodes[p[i][j]];
             else
             {
-                cerr << "value = " << p[i][j] << " ";
-                Node newNode(p[i][j]);
-                q->nextNodes[p[i][j]] = &newNode;
-                q = &newNode;
-                cerr << "current entry = " << q->this_char << endl;
+//                cerr << "character value = " << p[i][j] << " ";
+                Node *newNode = new Node(p[i][j]);
+//                q->nextNodes[p[i][j]] = &newNode;
+//                q = q->nextNodes[p[i][j]];
+                q->nextNodes.insert({p[i][j], newNode});
+                q = q->nextNodes[p[i][j]];
+//                cerr << "check top = " << trie.nextNodes['A']->this_char << endl;
+//                cerr << "current entry = " << q->this_char << endl;
             }
+//            cerr << "Node = " << (long long)q << endl;
         }
-        cerr << endl;
+//        cerr << endl;
     }
-    cerr << "check " << trie.nextNodes['G']->this_char << endl;
+//    cerr << "end check " << trie.nextNodes['A']->this_char << endl;
     return trie;
-}
-void findInTrie(Node trie)
-{
-//    string s;
-//    cin >> s;
-    cerr << "entering the printing function" << endl;
-    for(auto i = trie.nextNodes.begin();i != trie.nextNodes.end();i++)
-    {
-        //if()
-        cerr << "in for  loop" << endl;
-        cout << i->first << " ";
-        findInTrie(*i->second);
-    }
 }
 int ctr=0;
 void graphdfs(Node node,int current)
 {
-    cerr << "node ->" << node.this_char <<  "<-\n";
-    cerr << "current = " << current << endl;
+//    cerr << "node ->" << node.this_char <<  "<-\n";
+//    cerr << "current = " << current << endl;
+    //TODO: Change this procedure and modify dfs
     if(node.this_char != '$')
     {
-        cerr << "entered if block" << endl;
+//        cerr << "entered if block" << endl;
         for(auto i = node.nextNodes.begin();i != node.nextNodes.end();i++)
         {
             ++ctr;
-            cerr << "in for loop" << endl;
-            cout << current << "->" << ctr << ":" << i->first << endl;
-            graphdfs(*i->second,ctr);
+//            cerr << "in for loop" << endl;
+            if(i->first != '$')
+            {
+                cout << current << "->" << ctr << ":" << i->first << endl;
+                graphdfs(*i->second,ctr);
+            }
         }
     }
 }
@@ -110,7 +108,7 @@ int main()
         p[i].push_back('$');
     }
     Node trie = makeTrie();
-    findInTrie(trie);
+//    findInTrie(trie);
     graphdfs(trie,0);
     return 0;
 }
