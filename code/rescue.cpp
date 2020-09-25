@@ -73,7 +73,7 @@ int main()
         {
             if(lit_count >= k)
             {
-                long long diff = nd.first-previous.first;
+                long long diff = nd.first-previous.first+1;
                 countC += diff*ncr(lit_count,k);
             }
             lit_count++;
