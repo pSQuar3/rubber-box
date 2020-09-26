@@ -2,7 +2,7 @@
 
 #define lli long long int
 #define ull unsigned long long
-#define MX 100000
+#define MX 10000
 
 using std::cin;
 using std::cout;
@@ -28,33 +28,41 @@ using std::make_pair;
 using std::string;
 using std::swap;
 using std::hash;
+int n;
+int a[2*MX];
 
-
-int commonLength(string a, string b)
+void solve()
 {
-    int n = (int)a.size();
-    int m = (int)b.size();
-    int L[n+1][m+1];
-    int r = -1;
-    L[0][0] = 0;
-    for(int i=0;i<=m;i++)
-        L[0][i] = 0;
-    for(int i=0;i<=n;i++)
-        L[i][0] = 0;
-    for(int i=1;i<=n;i++)
+    cin >> n;
+    for(int i=0;i<n;i++)
+        cin >> a[i];
+    lli prd = 1;
+    int crmx = -9999;
+    int c[5];
+    for(int i=0;i<5;i++)
     {
-        for(int j=1;j<=m;j++)
+        crmx = max(crmx,a[i]);
+        prd *= a[i];
+        c[i] = a[i];
+    }
+    
+    for(int i=5;i<n;i++)
+    {
+        //section check
+        long long cmx = prd;
+        sort(c,c+5);
+        for(int j=0;j<5;j++)
         {
-            if(a[i-1] == b[j-1])
+            lli cm = 0;
+            if(prd*(a[i]/c[j]) > prd)
             {
-                L[i][j] = L[i-1][j-1] + 1;
-                r = max(r,L[i][j]);
+                prd = prd*(a[i]/c[j]);
+                c[j] = a[i];
+                i++;
             }
-            else
-                L[i][j] = 0;
         }
     }
-    return r;
+    cout << crmx << endl;
 }
 
 int main()
@@ -62,9 +70,9 @@ int main()
     std::ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    string s1,s2;
-    cin >> s1;
-    cin >> s2;
-    cout << commonLength(s1,s2) << endl;
+    int t;
+    cin >> t;
+    for(int i=0;i<t;i++)
+        solve();
     return 0;
 }

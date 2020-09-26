@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <cstdlib>
 
 #define lli long long int
 #define ull unsigned long long
@@ -72,8 +71,8 @@ int main()
      * ch = number of reads
      * max_size = maximum length of each read
      *                     t  ch max_size */
-    fstream g = createCase(25,12,13);
-    cout << ((g)? "Test cases generated successfully":"File creation unsuccessful") << endl;
+    fstream g = createCase(25,12,4);
+    cout << ((g)? "Test cases generated":"unsuccessful") << endl;
     g.close();
     displayFile();
     return 0;
