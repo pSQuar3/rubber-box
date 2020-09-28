@@ -19,6 +19,7 @@ struct Node
     bool find(char c)
     {
         return nextNodes.find(c) != nextNodes.end();
+        
     }
 };
 int main()

@@ -13,9 +13,10 @@ body {
     border-style: solid;
     width: 25%;
     padding: 5px;
-    position:sticky;
-    top:900px;
-    float: right;
+
+    position: sticky;
+    top:0;
+    right:0;
 }
 #two {
     border-width: 5px;
