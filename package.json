@@ -1,0 +1,19 @@
+{
+  "name": "rubber-box",
+  "version": "1.0.0",
+  "description": "Miscellaneous code files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pSQuar3/rubber-box.git"
+  },
+  "author": "Pratyay Pande",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pSQuar3/rubber-box/issues"
+  },
+  "homepage": "https://github.com/pSQuar3/rubber-box#readme"
+}

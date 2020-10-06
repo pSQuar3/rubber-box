@@ -10,7 +10,7 @@ using std::unordered_map;
 using std::queue;
 using std::pair;
 using std::endl;
-
+using std::cerr;
 void solve()
 {
     int n,current=0;
@@ -23,9 +23,12 @@ void solve()
         current += a[i];
         sm[current].push_back(i);
     }
+    cerr << "processing" << endl;
     current = 0;
+    int ctr = 0;
     for(auto i = sm.begin();i!=sm.end();i++)
     {
+        cerr << "infor loop" << endl;
         if(sm[i->first].size() == 2)
         {
             if(current == 0)
@@ -36,11 +39,13 @@ void solve()
             cout << "{ ";
             int i1 = sm[i->first][0];
             int i2 = sm[i->first][1];
+            ctr++;
             for(int k=i1+1;k<=i2;k++)
                 cout << a[k] << " ";
             cout << "}\n";
         }
     }
+    cout << ctr << endl;
 }
 int main()
 {
