@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-//eduRev apur payer chaap
+
 #define lli long long int
 #define ull unsigned long long
 #define MX 100000
@@ -28,27 +28,38 @@ using std::make_pair;
 using std::string;
 using std::swap;
 using std::hash;
-string s;
 
-void solve()
+string isValid(string s)
 {
-    int n = (int)s.size();
-    int D[n+1];
-    D[0] = 0;
-    int pre_v=0;
-    int post_v=0;
-    for(int i=1;i<=n;i++)
+    unordered_map<char,int> a;
+    for(int i=0;i<(int)s.size();i++)
     {
-
+        a[s[i]]++;
     }
+    int mx = 0,mn = MX;
+    for(unordered_map<char,int>::iterator it = a.begin();it != a.end();it++)
+    {
+        if(it->second < mn)
+            mn = it->second;
+    }
+    for(unordered_map<char,int>::iterator it = a.begin();it != a.end();it++)
+    {
+        if(it->second > mn)
+            mx++;
+    }
+    if(mx > 1)
+        return "NO";
+    return "YES";
 }
+
 
 int main()
 {
     std::ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
+    string s;
     cin >> s;
-    solve();
+    cout << isValid(s) << endl;
     return 0;
 }

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-//eduRev apur payer chaap
+
 #define lli long long int
 #define ull unsigned long long
 #define MX 100000
@@ -28,19 +28,25 @@ using std::make_pair;
 using std::string;
 using std::swap;
 using std::hash;
-string s;
+int n,m;
+vector<vector<int>> gph;
+vector<vector<int>> cost;
+/*
+ * what we need in the end: graph -> with some edges removed
+ */
 
-void solve()
+void prim(int start)
 {
-    int n = (int)s.size();
-    int D[n+1];
-    D[0] = 0;
-    int pre_v=0;
-    int post_v=0;
-    for(int i=1;i<=n;i++)
+    auto cmp = [](pair<int,ull> left, pair<int,ull> right)
     {
-
-    }
+        return(left.second > right.second || left.second == right.second);
+    };
+    priority_queue<pair<int,ull>, vector<pair<int,ull>>, decltype(cmp)> min_heap(cmp);
+    
+    /* 
+     * select node 0
+     * find the smallest node in it
+     */
 }
 
 int main()
@@ -48,7 +54,6 @@ int main()
     std::ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    cin >> s;
-    solve();
+    
     return 0;
 }

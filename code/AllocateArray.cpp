@@ -1,23 +1,16 @@
-#include <iostream>
-#include <new>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
-    //how to allocate an array
+    std::ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     int *p, i;
     int h;
     cin >> h;
-    try
-    {
         p = new int [10]; // allocate 10 integer array
-    }
-    catch (bad_alloc xa)
-    {
-        cout << "Allocation Failure\n";
-        return 1;
-    }
     for(i=0;i<10;i++)
-        p[i] = i;
+        p[i] = h;
     for(i=0; i<10; i++)
         cout << p[i] << " ";
     delete [] p; // release the array

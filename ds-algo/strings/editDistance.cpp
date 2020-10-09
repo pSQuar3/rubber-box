@@ -22,6 +22,7 @@ int findDist()
         for(int j=1;j<=m;j++)
         {
             if(a[i-1] == b[i-1])
+            
                 edt[i][j] = min(edt[i][j-1]+1,min(edt[i-1][j]+1,edt[i-1][j-1]));
             else
                 edt[i][j] = min(edt[i][j-1]+1,min(edt[i-1][j]+1,edt[i-1][j-1]+1));
