@@ -1,33 +1,14 @@
 #include <bits/stdc++.h>
-
-#define lli long long int
-#define ull unsigned long long
 #define MX 1000
-
 using std::cin;
 using std::cout;
 using std::cerr;
-//using std::floor;
-//using std::ceil;
-//using std::vector;
-//using std::unordered_map;
-//using std::map;
 using std::endl;
 using std::stack;
-//using std::queue;
 using std::max;
-//using std::min;
-//using std::deque;
-//using std::priority_queue;
-//using std::bitset;
-//using std::set;
-//using std::sort;
-//using std::hash;
 using std::pair;
 using std::make_pair;
-//using std::string;
-//using std::swap;
-//using std::hash;
+
 int n,m;
 int D[MX+2][MX+2];
 int a[MX][MX];
@@ -48,13 +29,11 @@ void solve()
             }
         }
     }
-    cout << mx << endl;
-    //correct up to this part
+    cout << "Maximum possibleamount to be mined = " << mx << endl;
     int t,i = cns_i;
     stack<pair<int,int>> st;
     while(cns_j > 0)
     {
-//        cerr << D[i][cns_j] << " -> (" << i-1 << ", " << cns_j-1 << ")" << endl;
         st.push(make_pair(i-1,cns_j-1));
         t = D[i][cns_j] - a[i-1][cns_j-1];
         if(t == D[i-1][cns_j-1])
@@ -63,6 +42,7 @@ void solve()
             i = i + 1;
         cns_j--;
     }
+    cout << "Path (0-indexed): ";
     while(!st.empty())
     {
         cout << "(" << st.top().first << ", " << st.top().second << ")";

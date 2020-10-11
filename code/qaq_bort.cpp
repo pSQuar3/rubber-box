@@ -21,7 +21,8 @@ int solve(int l,int r)
         return 0;
     while(l < n && s[l] != 'Q')
         l++;
-    while(r > 0 && s[r] != 'Q')
+    D[l][r] += solve(l+1,r);
+    while(r >= 0 && s[r] != 'Q')
         r--;
     int f=0;
     for(int i=l;i<=r;i++)
@@ -29,7 +30,9 @@ int solve(int l,int r)
         if(s[i] == 'A')
             f++;
     }
-    D[l][r] = f + solve(l,r);
+    cerr << "l = " << l << " r = " << r << endl;
+    D[l][r] = f + solve(l+1,r-1);
+    cerr << "D["<< l << "][" << r << "] = " << D[l][r] << endl;
     return D[l][r];
 }
 int main()
@@ -38,6 +41,7 @@ int main()
     cin.tie(0);
     cout.tie(0);
     cin >> s;
+    cerr << "accepted string\n";
     n = (int)s.size();
     for(int i=1;i<=n;i++)
         for(int j=i;j<=n;j++)
