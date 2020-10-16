@@ -44,6 +44,6 @@ int main()
     auto end = std::chrono::high_resolution_clock::now();
     double tme = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
     tme *= 1e-6;
-    cout << "n = " << m << " -> time = " << std::fixed << tme << std::setprecision(9) << " milliseconds";
+    //cout << "n = " << m << " -> time = " << std::fixed << tme << std::setprecision(9) << " milliseconds";
     return 0;
 }
