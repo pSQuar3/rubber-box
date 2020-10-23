@@ -13,21 +13,17 @@ using std::cerr;
 using std::endl;
 using std::vector;
 using std::string;
-const int MX = 100000;
+const int MX = 2000000;
 int n,len_pat;
-//int D[MX+1][MX+1];
-//int D[MX+1];
-//int a[MX];
-int s[MX];//contains the prefix function
+long long s[MX];
 string p;
 string t;
-void prefix_function()
+inline void prefix_function()
 {
     s[0] = 0;
-    int border = 0;
-    int h = (int)p.size();
-    //  linear time, not quadratic
-    for(int i=1;i<=h-1;i++)
+    long long border = 0;
+    long long h = (long long)p.size();
+    for(long long i=1;i<=h-1;i++)
     {
         while(border > 0 && p[i] != p[border])
             border = s[border-1];
@@ -37,25 +33,20 @@ void prefix_function()
             border = 0;
         s[i] = border;
     }
-    /*cerr << "Printing the prefix function" << endl;
-    for(int i=0;i<n;i++)
-        cerr << s[i] << " ";
-    cerr << endl;*/
 }
-vector<int> knuth_morris_pratt()
+inline void knuth_morris_pratt()
 {
-    cin >> t >> p;
-    n = (int)p.size();
+    cin >> p >> t;
+    n = (long long)p.size();
     p = p + "$" + t;
     prefix_function();
-    int tot = (int)p.size();
-    vector<int> result;
-    for(int i = n+1; i < tot; i++)
+    long long tot = (long long)p.size();
+    for(long long i = n+1; i < tot; i++)
     {
         if(s[i] == n)
-            result.push_back(i-2*n);
+            cout << (i-2*n) << " ";
     }
-    return result;
+    cout << "\n";
 }
 
 int main()
@@ -66,10 +57,13 @@ int main()
     //cin >> t;
     while(d-- > 0)
     {
-        vector<int> res = knuth_morris_pratt();
+        
+        knuth_morris_pratt();
+        /*
         for(int i=0;i<(int)res.size();i++)
             cout << res[i] << " ";
         cout << endl;
+        */
     }
     return 0;
 }
