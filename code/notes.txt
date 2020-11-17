@@ -1,67 +1,10 @@
-5 4 3 3 2
-4 3 2 2 1
+Problem:
 
+a0  a1  a2  a3  a4  a5  a6
 
-5 1 1 1 1
-4 1 1 1 1
-4 1 1 1 0
-3 1 1 1 0
-3 1 1 0 0
-2 1 1 0 0
-2 1 0 0 0
-1 1 0 0 0
-1 0 0 0 0
-0 0 0 0 0
-
-                                        ____
-                                    ____    ____
-____                            ____
-    ____            ____    ____
-        ____    ____    ____
-            ____
-11
->>><<><<<<>
-<<<>><<><>>><>
-
-if(i == 0)
-{
-    if(c[0] == )
-}
-if(i == n-1)
-{
-
-}
-
-accept data
-process to numbers -> size n+1
-n++;
-map<int,
-f: for i from 0 to n-1
-{
-    if(i == 0)
-    {
-        if(a[1] > a[0])
-            q -> push(i);
-        continue f;
-    }
-    if(i == n-1)
-    {
-        if(a[n-1] < a[n-2])
-            q->push(i)
-        continue f;
-    }
-    if(a[i-1] > a[i] && a[i] < a[i+1])
-    {
-        q -> push(i);
-    }
-}
-
-bool v[n];
-for i=0 to n-1
-    v[i] = false;
-
-
-
-
-
-call procedure split
+    a0  a1  a2  a3  a4  a5
+        a0  a1  a2  a3  a4
+            a0  a1  a2  a3
+                a0  a1  a2
+                    a0  a1
+                        a0

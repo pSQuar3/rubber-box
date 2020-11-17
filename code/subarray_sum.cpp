@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
-
+#define cn cout << "\n"
 #define lli long long int
 #define ull unsigned long long int
-
+/*
 using std::cin;
 using std::cout;
 using std::cerr;
@@ -26,39 +26,42 @@ using std::pair;
 using std::make_pair;
 using std::string;
 using std::swap;
-const int MX = 5000;
-int n;
-int D[MX+1][MX+1];
+*/
+using namespace std;
+const int MX = 100000;
+int n,k;
+//int D[MX+1][MX+1];
 //int D[MX+1];
-//int a[MX];
-string a,b;
+int a[MX];
+
 inline void solve()
 {
-    cin >> a >> b;
-    int x = (int)a.size(), y = (int)b.size();
-    for(int i=0;i<=x;i++)
-        D[0][i] = 0;
-    for(int j=0;j<=y;j++)
-        D[j][0] = 0;
-    int mx = 0,col_max=0,w=0;
-    for(int i=1;i<=x;i++)
+    cin >> n >> k;
+    for(int i=0;i<n;i++)
+        cin >> a[i];
+    if(n == 0)
+        return;
+    int current_sum=a[0];
+    int left=0;
+    int right=1;
+    while(right < n && left <= right)
     {
-        mx = 0;
-        for(int j=1;j<=y;j++)
+        if(current_sum + a[right] < k)
         {
-            D[i][j] = 0;
-            if(a[i-1] == b[j-1] && j > w)
-                D[i][j] = col_max + 1;
-            mx = max(mx,D[i][j]);
-            if(D[i][j] > mx)
-            {
-                mx = D[i][j];
-                w = j;
-            }
+            current_sum += a[right];
+            right = right + 1;
         }
-        col_max = mx;
+        else if(current_sum +a[right] > k)
+        {
+            current_sum -= a[left];
+            left = left + 1;
+        }
+        else
+            break;
     }
-    cout << mx << endl;
+    for(int i=left;i<=right;i++)
+        cout << a[i] << " ";
+    cn;
 }
 
 int main()

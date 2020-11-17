@@ -26,68 +26,30 @@ struct custom_hash
     { auto hash1 = hash<T1>{}(p); return hash1;
         /* auto hash2 = hash<T1>{}(p.first); return hash1^hash2; */ }
 };
-int n,m;
-unordered_map<string,int> mp;
-vector<vector<int>> graph;
-vector<int> dist;
-vector<bitset<1>> visit;
-vector<vector<int>> transpose;
-void topoOrder(int d,stack<int> &s)
+bool comp = [](pair<int,int> left, pair<int,int> right)
 {
-    visit[d] = 1;
-    for(int i=0;i<(int)graph[d].size();i++)
-    {
-        if(visit[graph[d][i]] == 0)
-            topoOrder(graph[d][i],s);
-    }
-    s.push(d);
-}
-void traverseDFS(int d,int ind)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)transpose[d].size();i++)
-    {
-        if(visit[transpose[d][i]] == 0)
-            traverseDFS(transpose[d][i],ind);
-    }
-}
+    return(left.second < right.second);
+};
+const int MX = 100000;
+int a[MX];
 void solve()
 {
-    cin >> n >> m;
-    string x,y;
-    int ind = 0;
-    graph.resize(n);
-    transpose.resize(n);
+    int n;
+    cin >> n;
     for(int i=0;i<n;i++)
+        cin >> a[i];
+    map<int,int, decltype(comp)> q(comp);
+    int i=0,j=0;
+    while(i < n)
     {
-        cin >> x >> y;
-        if(mp.find(x) == mp.end())
-            mp[x] = ind++;
-        if(mp.find(y) == mp.end())
-            mp[y] = ind++;
-        graph[mp[x]].push_back(mp[y]);
-        transpose[mp[y]].push_back(mp[x]);
+        if(i == j)
+            j++;
+
+        if(j == n-1)
+            i++;
+
     }
-    stack<int> s;
-    for(int i=0;i<n;i++)
-    {
-        if(visit[i] == 0)
-            topoOrder(i,s);
-    }
-    int id = 0;
-    vector<vector<int>> scc;
-    vector<int> cc;
-    for(int i=0;i<n;i++)
-        visit[i] = 0;
-    while(!s.empty())
-    {
-        int k = s.top();
-        s.pop();
-        for(int i=0;i < (int)transpose[k].size();i++)
-        {
-            if()
-        }
-    }
+
 }
 int main()
 {

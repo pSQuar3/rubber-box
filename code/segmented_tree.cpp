@@ -26,68 +26,51 @@ struct custom_hash
     { auto hash1 = hash<T1>{}(p); return hash1;
         /* auto hash2 = hash<T1>{}(p.first); return hash1^hash2; */ }
 };
-int n,m;
-unordered_map<string,int> mp;
-vector<vector<int>> graph;
-vector<int> dist;
-vector<bitset<1>> visit;
-vector<vector<int>> transpose;
-void topoOrder(int d,stack<int> &s)
+const int MX = 10000;
+int arr[MX],a[2*MX - 1];
+int n;
+int parent(int i)
 {
-    visit[d] = 1;
-    for(int i=0;i<(int)graph[d].size();i++)
-    {
-        if(visit[graph[d][i]] == 0)
-            topoOrder(graph[d][i],s);
-    }
-    s.push(d);
+    return floor(i-1)/2;
 }
-void traverseDFS(int d,int ind)
+int left(int i)
 {
-    visit[d] = 1;
-    for(int i=0;i<(int)transpose[d].size();i++)
+    return 2*i+1;
+}
+int right(int i)
+{
+    return 2*i+2;
+}
+void create(int l,int r,int node)
+{
+    if(l == r)
     {
-        if(visit[transpose[d][i]] == 0)
-            traverseDFS(transpose[d][i],ind);
+        a[node] = arr[l];
+        return;
+    }
+    else if(r-l == 1)
+    {
+        a[left(node)] = arr[l];
+        a[right(node)] = arr[r];
+        return;
+    }
+    else
+    {
+        int m = l + (r-l)/2 + (r-l)%2;
+        create(l,m,left(node));
+        create(m+1,r,right(node));
+        a[node] = a[left(node)] + a[right(node)];
     }
 }
 void solve()
 {
-    cin >> n >> m;
-    string x,y;
-    int ind = 0;
-    graph.resize(n);
-    transpose.resize(n);
+    cin >> n;
     for(int i=0;i<n;i++)
-    {
-        cin >> x >> y;
-        if(mp.find(x) == mp.end())
-            mp[x] = ind++;
-        if(mp.find(y) == mp.end())
-            mp[y] = ind++;
-        graph[mp[x]].push_back(mp[y]);
-        transpose[mp[y]].push_back(mp[x]);
-    }
-    stack<int> s;
-    for(int i=0;i<n;i++)
-    {
-        if(visit[i] == 0)
-            topoOrder(i,s);
-    }
-    int id = 0;
-    vector<vector<int>> scc;
-    vector<int> cc;
-    for(int i=0;i<n;i++)
-        visit[i] = 0;
-    while(!s.empty())
-    {
-        int k = s.top();
-        s.pop();
-        for(int i=0;i < (int)transpose[k].size();i++)
-        {
-            if()
-        }
-    }
+        cin >> arr[i];
+    create(0,n-1,0);
+    for(int i=0;i<2*n-1;i++)
+        cout << a[i] << " ";
+    cout << "\n";
 }
 int main()
 {

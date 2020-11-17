@@ -26,39 +26,28 @@ using std::pair;
 using std::make_pair;
 using std::string;
 using std::swap;
-const int MX = 5000;
-int n;
-int D[MX+1][MX+1];
+const int MX = 100000;
+long int n,x;
+//int D[MX+1][MX+1];
 //int D[MX+1];
 //int a[MX];
-string a,b;
+
+//void  
+
 inline void solve()
 {
-    cin >> a >> b;
-    int x = (int)a.size(), y = (int)b.size();
-    for(int i=0;i<=x;i++)
-        D[0][i] = 0;
-    for(int j=0;j<=y;j++)
-        D[j][0] = 0;
-    int mx = 0,col_max=0,w=0;
-    for(int i=1;i<=x;i++)
+    cin >> n;
+    int ct = 0;
+    while(n > 0)
     {
-        mx = 0;
-        for(int j=1;j<=y;j++)
-        {
-            D[i][j] = 0;
-            if(a[i-1] == b[j-1] && j > w)
-                D[i][j] = col_max + 1;
-            mx = max(mx,D[i][j]);
-            if(D[i][j] > mx)
-            {
-                mx = D[i][j];
-                w = j;
-            }
-        }
-        col_max = mx;
+        x = n/2;
+        if(n%2 == 0)
+            ct += 1;
+        else
+            ct += 2;
+        n = x;
     }
-    cout << mx << endl;
+    cout << ct << "\n";
 }
 
 int main()
@@ -66,7 +55,7 @@ int main()
     std::ios_base::sync_with_stdio(0);
     cin.tie(0);
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while(t-- > 0)
         solve();
     return 0;

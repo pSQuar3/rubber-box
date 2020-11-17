@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+// Problem: Find length of longest palindromic subsequence in a string (max. length = 1000)
+// Used crude recursive strategy with DP (high memory overhead)
 #define lli long long int
 #define ull unsigned long long
 using namespace std;
@@ -26,68 +28,30 @@ struct custom_hash
     { auto hash1 = hash<T1>{}(p); return hash1;
         /* auto hash2 = hash<T1>{}(p.first); return hash1^hash2; */ }
 };
-int n,m;
-unordered_map<string,int> mp;
-vector<vector<int>> graph;
-vector<int> dist;
-vector<bitset<1>> visit;
-vector<vector<int>> transpose;
-void topoOrder(int d,stack<int> &s)
+const int MX = 1000;// max length
+string s;
+int n;
+int D[MX+1][MX+1];
+int calculate(int l,int r)
 {
-    visit[d] = 1;
-    for(int i=0;i<(int)graph[d].size();i++)
-    {
-        if(visit[graph[d][i]] == 0)
-            topoOrder(graph[d][i],s);
-    }
-    s.push(d);
-}
-void traverseDFS(int d,int ind)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)transpose[d].size();i++)
-    {
-        if(visit[transpose[d][i]] == 0)
-            traverseDFS(transpose[d][i],ind);
-    }
+    if(l == r || abs(l-r) == 1)
+        return (s[l] == s[r])? abs(l-r)+1:1;
+    if(D[l][r] != -1)
+        return D[l][r];
+    if(s[l] == s[r])
+        D[l][r] = 2 + calculate(l+1,r-1);
+    else
+        D[l][r] = max(calculate(l+1,r),calculate(l,r-1));
+    return D[l][r];
 }
 void solve()
 {
-    cin >> n >> m;
-    string x,y;
-    int ind = 0;
-    graph.resize(n);
-    transpose.resize(n);
-    for(int i=0;i<n;i++)
-    {
-        cin >> x >> y;
-        if(mp.find(x) == mp.end())
-            mp[x] = ind++;
-        if(mp.find(y) == mp.end())
-            mp[y] = ind++;
-        graph[mp[x]].push_back(mp[y]);
-        transpose[mp[y]].push_back(mp[x]);
-    }
-    stack<int> s;
-    for(int i=0;i<n;i++)
-    {
-        if(visit[i] == 0)
-            topoOrder(i,s);
-    }
-    int id = 0;
-    vector<vector<int>> scc;
-    vector<int> cc;
-    for(int i=0;i<n;i++)
-        visit[i] = 0;
-    while(!s.empty())
-    {
-        int k = s.top();
-        s.pop();
-        for(int i=0;i < (int)transpose[k].size();i++)
-        {
-            if()
-        }
-    }
+    cin >> s;
+    n = (int)s.length();
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++)
+            D[i-1][j-1] = -1;
+    cout << calculate(0,n-1) << endl;
 }
 int main()
 {

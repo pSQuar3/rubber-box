@@ -26,68 +26,63 @@ struct custom_hash
     { auto hash1 = hash<T1>{}(p); return hash1;
         /* auto hash2 = hash<T1>{}(p.first); return hash1^hash2; */ }
 };
-int n,m;
-unordered_map<string,int> mp;
-vector<vector<int>> graph;
-vector<int> dist;
-vector<bitset<1>> visit;
-vector<vector<int>> transpose;
-void topoOrder(int d,stack<int> &s)
+struct Node
 {
-    visit[d] = 1;
-    for(int i=0;i<(int)graph[d].size();i++)
+    int val;
+    Node *next;
+    Node(int v)
     {
-        if(visit[graph[d][i]] == 0)
-            topoOrder(graph[d][i],s);
+        val = v;
+        next = NULL;
     }
-    s.push(d);
-}
-void traverseDFS(int d,int ind)
+};
+void delNode(Node *nd)
 {
-    visit[d] = 1;
-    for(int i=0;i<(int)transpose[d].size();i++)
+    while(nd->next != NULL)
     {
-        if(visit[transpose[d][i]] == 0)
-            traverseDFS(transpose[d][i],ind);
+        nd->val = nd->next->val;
+        nd = nd->next;
+    }
+    nd->next = NULL;
+}
+void disp(Node *head)
+{
+    while(head->next != NULL)
+    {
+        cout << head->val << " ";
+        head = head->next;
     }
 }
 void solve()
 {
-    cin >> n >> m;
-    string x,y;
-    int ind = 0;
-    graph.resize(n);
-    transpose.resize(n);
-    for(int i=0;i<n;i++)
+    int n;
+    cin >> n;
+    Node *head;
+    Node *nd;
+    bool h = true;
+    Node *a;
+    while(n--)
     {
-        cin >> x >> y;
-        if(mp.find(x) == mp.end())
-            mp[x] = ind++;
-        if(mp.find(y) == mp.end())
-            mp[y] = ind++;
-        graph[mp[x]].push_back(mp[y]);
-        transpose[mp[y]].push_back(mp[x]);
-    }
-    stack<int> s;
-    for(int i=0;i<n;i++)
-    {
-        if(visit[i] == 0)
-            topoOrder(i,s);
-    }
-    int id = 0;
-    vector<vector<int>> scc;
-    vector<int> cc;
-    for(int i=0;i<n;i++)
-        visit[i] = 0;
-    while(!s.empty())
-    {
-        int k = s.top();
-        s.pop();
-        for(int i=0;i < (int)transpose[k].size();i++)
+        int x;
+        cin >> x;
+        if(h)
         {
-            if()
+            head = new Node(x);
+            nd = head;
+        }
+        else
+        {
+            a = new Node(x);
+            nd->next = a;
+            nd = a;
         }
     }
+    cin >> n;
+    nd = head;
+    while(n--)
+        nd = nd->next;
+    delNode(nd);
+    disp(head);
 }
 int main()
 {

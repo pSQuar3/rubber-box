@@ -26,68 +26,40 @@ struct custom_hash
     { auto hash1 = hash<T1>{}(p); return hash1;
         /* auto hash2 = hash<T1>{}(p.first); return hash1^hash2; */ }
 };
-int n,m;
-unordered_map<string,int> mp;
-vector<vector<int>> graph;
-vector<int> dist;
-vector<bitset<1>> visit;
-vector<vector<int>> transpose;
-void topoOrder(int d,stack<int> &s)
+const int MX = 10;
+int a[MX];
+int n;
+int find()
 {
-    visit[d] = 1;
-    for(int i=0;i<(int)graph[d].size();i++)
+    int x=0,y=0,m=-1;
+    for(int i=2*n-1;i>0;i--)
     {
-        if(visit[graph[d][i]] == 0)
-            topoOrder(graph[d][i],s);
+        for(int j=i-1;j>=0;j--)
+        {
+            if(a[j] != -1 && a[i] != -1 && __gcd(a[j],a[i]) > m)
+            {
+                m = __gcd(a[j],a[i]);
+                x = i;y = j;
+            }
+        }
     }
-    s.push(d);
-}
-void traverseDFS(int d,int ind)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)transpose[d].size();i++)
-    {
-        if(visit[transpose[d][i]] == 0)
-            traverseDFS(transpose[d][i],ind);
-    }
+    a[x] = -1;
+    a[y] = -1;
+    return m;
 }
 void solve()
 {
-    cin >> n >> m;
-    string x,y;
-    int ind = 0;
-    graph.resize(n);
-    transpose.resize(n);
-    for(int i=0;i<n;i++)
+    cin >> n;
+    for(int i=0;i<2*n;i++)
+        cin >> a[i];
+    sort(a,a+2*n);
+    long x = 0;
+    for(int i=n;i>0;i--)
     {
-        cin >> x >> y;
-        if(mp.find(x) == mp.end())
-            mp[x] = ind++;
-        if(mp.find(y) == mp.end())
-            mp[y] = ind++;
-        graph[mp[x]].push_back(mp[y]);
-        transpose[mp[y]].push_back(mp[x]);
+        int y = find();
+        x += i*y;
     }
-    stack<int> s;
-    for(int i=0;i<n;i++)
-    {
-        if(visit[i] == 0)
-            topoOrder(i,s);
-    }
-    int id = 0;
-    vector<vector<int>> scc;
-    vector<int> cc;
-    for(int i=0;i<n;i++)
-        visit[i] = 0;
-    while(!s.empty())
-    {
-        int k = s.top();
-        s.pop();
-        for(int i=0;i < (int)transpose[k].size();i++)
-        {
-            if()
-        }
-    }
+    cout << x << endl;
 }
 int main()
 {

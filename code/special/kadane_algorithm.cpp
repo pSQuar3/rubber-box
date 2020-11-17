@@ -26,39 +26,35 @@ using std::pair;
 using std::make_pair;
 using std::string;
 using std::swap;
-const int MX = 5000;
-int n;
-int D[MX+1][MX+1];
+const int MX = 100000;
+//int D[MX+1][MX+1];
 //int D[MX+1];
 //int a[MX];
-string a,b;
-inline void solve()
+pair<int,int> kadane(int a[], int n)
 {
-    cin >> a >> b;
-    int x = (int)a.size(), y = (int)b.size();
-    for(int i=0;i<=x;i++)
-        D[0][i] = 0;
-    for(int j=0;j<=y;j++)
-        D[j][0] = 0;
-    int mx = 0,col_max=0,w=0;
-    for(int i=1;i<=x;i++)
+    int max_so_far = INT_MIN, max_ending_here = 0, h = 0;
+    for(int i=0;i<n;i++)
     {
-        mx = 0;
-        for(int j=1;j<=y;j++)
+        max_ending_here += a[i];
+        if(max_so_far < max_ending_here)
         {
-            D[i][j] = 0;
-            if(a[i-1] == b[j-1] && j > w)
-                D[i][j] = col_max + 1;
-            mx = max(mx,D[i][j]);
-            if(D[i][j] > mx)
-            {
-                mx = D[i][j];
-                w = j;
-            }
+            max_so_far = max_ending_here;
+            h = i;
         }
-        col_max = mx;
+        if(max_ending_here < 0)
+            max_ending_here = 0;
     }
-    cout << mx << endl;
+    return make_pair(max_so_far,h);
+}
+void solve()
+{
+    int n;
+    cin >> n;
+    int a[n];
+    for(int i=0;i<n;i++)
+        cin >> a[i];
+    pair<int,int> p = kadane(a,n);
+    cout << p.first << " " << p.second << endl;
 }
 
 int main()

@@ -26,68 +26,36 @@ struct custom_hash
     { auto hash1 = hash<T1>{}(p); return hash1;
         /* auto hash2 = hash<T1>{}(p.first); return hash1^hash2; */ }
 };
-int n,m;
-unordered_map<string,int> mp;
-vector<vector<int>> graph;
-vector<int> dist;
-vector<bitset<1>> visit;
-vector<vector<int>> transpose;
-void topoOrder(int d,stack<int> &s)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)graph[d].size();i++)
-    {
-        if(visit[graph[d][i]] == 0)
-            topoOrder(graph[d][i],s);
+const int MX = 100000;
+int a[MX];
+int removeDuplicates(vector<int>& nums) {
+        int crr=nums[0]-1;
+        int len = 0;
+        int i=0;
+        while(i < (int)nums.size())
+        {
+            if(crr == nums[i])
+                nums.erase(nums.begin() + i);
+            else
+            {
+                len++;
+                crr = nums[i];
+                i++;
+            }
+        }
+        return len;
     }
-    s.push(d);
-}
-void traverseDFS(int d,int ind)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)transpose[d].size();i++)
-    {
-        if(visit[transpose[d][i]] == 0)
-            traverseDFS(transpose[d][i],ind);
-    }
-}
 void solve()
 {
-    cin >> n >> m;
-    string x,y;
-    int ind = 0;
-    graph.resize(n);
-    transpose.resize(n);
+    int n;
+    cin >> n;
+    vector<int> v(n);
     for(int i=0;i<n;i++)
-    {
-        cin >> x >> y;
-        if(mp.find(x) == mp.end())
-            mp[x] = ind++;
-        if(mp.find(y) == mp.end())
-            mp[y] = ind++;
-        graph[mp[x]].push_back(mp[y]);
-        transpose[mp[y]].push_back(mp[x]);
-    }
-    stack<int> s;
-    for(int i=0;i<n;i++)
-    {
-        if(visit[i] == 0)
-            topoOrder(i,s);
-    }
-    int id = 0;
-    vector<vector<int>> scc;
-    vector<int> cc;
-    for(int i=0;i<n;i++)
-        visit[i] = 0;
-    while(!s.empty())
-    {
-        int k = s.top();
-        s.pop();
-        for(int i=0;i < (int)transpose[k].size();i++)
-        {
-            if()
-        }
-    }
+        cin >> v[i];
+    cout << removeDuplicates(v) << endl;
+    for(int i=0;i<(int)v.size();i++)
+        cout << v[i]  << " ";
+    cout << endl;
 }
 int main()
 {

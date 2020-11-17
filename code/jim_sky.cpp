@@ -1,23 +1,18 @@
 #include <bits/stdc++.h>
+
 #define lli long long int
 #define ull unsigned long long int
+
 using namespace std;
 const int MX = 100000;
 int n;
-//int D[MX+1][MX+1];
-//int D[MX+1];
-//int a[MX];
-
+int a[MX];
 inline void solve()
 {
-    string s;
-    double h;
-    cin >> s;
-    cin >> h;
-    cout << s << endl;
-    cout << h << endl;
-    string k = "1235";
-    cout << int(k) << endl;
+    cin >> n;
+    for(int i=0;i<n;i++)
+        cin >> a[i];
+    
 }
 
 int main()

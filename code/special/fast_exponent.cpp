@@ -26,39 +26,28 @@ using std::pair;
 using std::make_pair;
 using std::string;
 using std::swap;
-const int MX = 5000;
-int n;
-int D[MX+1][MX+1];
+const int MX = 100000;
+//int D[MX+1][MX+1];
 //int D[MX+1];
 //int a[MX];
-string a,b;
+inline lli fast_power(int x, int y)
+{
+    if(y <= 1)
+        return x;
+    lli k = fast_power(x,y/2);
+//    cerr << n/2 << " " << k << endl;
+    k = k*k;
+    if(y%2 == 1)
+        k = k*x;
+    return k;
+}
+
 inline void solve()
 {
-    cin >> a >> b;
-    int x = (int)a.size(), y = (int)b.size();
-    for(int i=0;i<=x;i++)
-        D[0][i] = 0;
-    for(int j=0;j<=y;j++)
-        D[j][0] = 0;
-    int mx = 0,col_max=0,w=0;
-    for(int i=1;i<=x;i++)
-    {
-        mx = 0;
-        for(int j=1;j<=y;j++)
-        {
-            D[i][j] = 0;
-            if(a[i-1] == b[j-1] && j > w)
-                D[i][j] = col_max + 1;
-            mx = max(mx,D[i][j]);
-            if(D[i][j] > mx)
-            {
-                mx = D[i][j];
-                w = j;
-            }
-        }
-        col_max = mx;
-    }
-    cout << mx << endl;
+    int n,a;
+    cin >> a >> n;
+    lli k = fast_power(a,n);
+    cout << k << endl;
 }
 
 int main()

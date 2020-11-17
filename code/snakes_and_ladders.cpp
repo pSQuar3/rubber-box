@@ -1,4 +1,13 @@
 #include <bits/stdc++.h>
+/*  
+ *  Problem Statement: Given a board of snakes and ladders with snakes and ladders connecting
+ *  different boxes similar to an actual snakes and ladders board game
+ *
+ *  Find the minimum number of throws a player needs to make in order to wih the game
+ *  INPUT:  first line contains 3 integers n, s and l
+ *          
+ *
+ */
 #define lli long long int
 #define ull unsigned long long
 using namespace std;
@@ -26,68 +35,52 @@ struct custom_hash
     { auto hash1 = hash<T1>{}(p); return hash1;
         /* auto hash2 = hash<T1>{}(p.first); return hash1^hash2; */ }
 };
-int n,m;
-unordered_map<string,int> mp;
-vector<vector<int>> graph;
-vector<int> dist;
-vector<bitset<1>> visit;
-vector<vector<int>> transpose;
-void topoOrder(int d,stack<int> &s)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)graph[d].size();i++)
-    {
-        if(visit[graph[d][i]] == 0)
-            topoOrder(graph[d][i],s);
-    }
-    s.push(d);
-}
-void traverseDFS(int d,int ind)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)transpose[d].size();i++)
-    {
-        if(visit[transpose[d][i]] == 0)
-            traverseDFS(transpose[d][i],ind);
-    }
-}
+vector<bool> v;
+int s,l,n;
+vector<vector<int>> link;
 void solve()
 {
-    cin >> n >> m;
-    string x,y;
-    int ind = 0;
-    graph.resize(n);
-    transpose.resize(n);
-    for(int i=0;i<n;i++)
+    int m=6;
+    cin >> n >> s >> l;
+    v.resize(n,false);
+    link.resize(n);
+    int x,y;
+    for(int i=0;i<s;i++)
     {
         cin >> x >> y;
-        if(mp.find(x) == mp.end())
-            mp[x] = ind++;
-        if(mp.find(y) == mp.end())
-            mp[y] = ind++;
-        graph[mp[x]].push_back(mp[y]);
-        transpose[mp[y]].push_back(mp[x]);
+        link[x-1].push_back(y-1);
     }
-    stack<int> s;
-    for(int i=0;i<n;i++)
+    for(int i=0;i<l;i++)
     {
-        if(visit[i] == 0)
-            topoOrder(i,s);
+        cin >> x >> y;
+        link[x-1].push_back(y-1);
     }
-    int id = 0;
-    vector<vector<int>> scc;
-    vector<int> cc;
-    for(int i=0;i<n;i++)
-        visit[i] = 0;
-    while(!s.empty())
+    // use BFS to get to n-1
+    queue<pair<int,int>> q;
+    pair<int,int> a;
+    q.push(make_pair(0,0));
+    while(!q.empty())
     {
-        int k = s.top();
-        s.pop();
-        for(int i=0;i < (int)transpose[k].size();i++)
+        a = q.front();
+        q.pop();
+        if(a.first == n-1)
+            break;
+        for(int i=a.first+1;i<=min(a.first+m,n-1);i++)
         {
-            if()
+            if(!v[i])
+            {
+                pair<int,int> r;
+                r.second = a.second + 1;
+                v[i] = true;
+                if(link[i].size() > 0)
+                    r.first = link[i][0];
+                else
+                    r.first = i;
+                q.push(r);
+            }
         }
     }
+    cout << a.second << "\n";
 }
 int main()
 {

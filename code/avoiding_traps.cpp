@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+// Sprinklr Test Question
 #define lli long long int
 #define ull unsigned long long
 using namespace std;
@@ -26,75 +27,62 @@ struct custom_hash
     { auto hash1 = hash<T1>{}(p); return hash1;
         /* auto hash2 = hash<T1>{}(p.first); return hash1^hash2; */ }
 };
-int n,m;
-unordered_map<string,int> mp;
-vector<vector<int>> graph;
-vector<int> dist;
-vector<bitset<1>> visit;
-vector<vector<int>> transpose;
-void topoOrder(int d,stack<int> &s)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)graph[d].size();i++)
-    {
-        if(visit[graph[d][i]] == 0)
-            topoOrder(graph[d][i],s);
-    }
-    s.push(d);
-}
-void traverseDFS(int d,int ind)
-{
-    visit[d] = 1;
-    for(int i=0;i<(int)transpose[d].size();i++)
-    {
-        if(visit[transpose[d][i]] == 0)
-            traverseDFS(transpose[d][i],ind);
-    }
-}
+const int MX = 100000;
+char a[MX];
+int sieve[MX+1];
+int D[MX];
+int mx=-1;
 void solve()
 {
-    cin >> n >> m;
-    string x,y;
-    int ind = 0;
-    graph.resize(n);
-    transpose.resize(n);
+    int n,r1,r2;
+    cin >> r1 >> r2 >> n;
+    double x = (double)r1/(double)r2;
+    for(int i=mx+1;i<=n;i++)
+        sieve[i] = 0;
+    for(int i = max(2,mx); i <= n;i++)
+    {
+        if(sieve[i])
+            continue;
+        for(int j = 2*i;j <= n;j += i)
+            sieve[j] = i;
+    }
+    mx = max(mx,n);
     for(int i=0;i<n;i++)
     {
-        cin >> x >> y;
-        if(mp.find(x) == mp.end())
-            mp[x] = ind++;
-        if(mp.find(y) == mp.end())
-            mp[y] = ind++;
-        graph[mp[x]].push_back(mp[y]);
-        transpose[mp[y]].push_back(mp[x]);
+        cin >> a[i];
+        D[i] = INT_MAX;
     }
-    stack<int> s;
+    int A = 0;
+    if(a[n-1] == '*')
+    {
+        cout << "No way!\n";
+        return;
+    }
+    D[0] = 0;
     for(int i=0;i<n;i++)
     {
-        if(visit[i] == 0)
-            topoOrder(i,s);
+        if(a[i] == '*')
+            continue;
+        if(i < n-1 && a[i+1] == '#')
+            D[i+1] = min(D[i+1],D[i] + 1);
+        if(i < n-2 && a[i+2] == '#')
+            D[i+2] = min(D[i+2],D[i] + 1);
+        if(!sieve[i+1])
+            A++;
+        if((double)A/(double)(i+1) >= x && i+1+A < n)
+            D[i+A] = min(D[i+A],D[i] + 1);
     }
-    int id = 0;
-    vector<vector<int>> scc;
-    vector<int> cc;
-    for(int i=0;i<n;i++)
-        visit[i] = 0;
-    while(!s.empty())
-    {
-        int k = s.top();
-        s.pop();
-        for(int i=0;i < (int)transpose[k].size();i++)
-        {
-            if()
-        }
-    }
+    if(D[n-1]-MX > 0)
+        cout << "No way!\n";
+    else
+        cout << max(-1,D[n-1]) << "\n";
 }
 int main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while(t--)
         solve();
     return 0;
