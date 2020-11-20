@@ -60,12 +60,13 @@ int main()
         int j,ct = 0;
         for(j=i;j>=0;j--)
         {
-            ct += w[i];
+            ct += a[i];
             if(ct >= W/2)
                 break;
         }
         for(int x=j;x<=i;x++)
-            cout << "";
+            cout << a[i] << " ";
+        cout << "\n";
     }
     return 0;
 }
