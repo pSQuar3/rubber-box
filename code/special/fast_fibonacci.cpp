@@ -4,8 +4,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 int n;
-lli F[2][2] = {{1,1},{1,0}};
-lli A[2][2] = {{1,1},{1,0}};
+lli F[2][2] = {{10,1},{-1,0}};
+lli A[2][2] = {{10,1},{-1,0}};
 void multiply(lli P[2][2], lli B[2][2])
 {
     lli w = P[0][0]*B[0][0] + P[0][1]*B[1][0];

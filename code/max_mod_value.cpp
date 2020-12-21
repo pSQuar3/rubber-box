@@ -16,19 +16,23 @@ inline pair<A,int> kadane(A x[], int n) {
         if(max_ending_here < 0) max_ending_here = 0;}
     return make_pair(max_so_far,h);
 }
-struct custom_hash
-{
+const int INF = 10000;
+const int MX = 100000;
+int sieve[MX+1],mxkq=0;
+inline void buildSieve(int xw) {
+    for(int i=mxkq;i<=max(xw,mxkq);i++) sieve[i] = 0;
+    for(int i = max(2,mxkq); i <= xw;i++) {
+        if(sieve[i]) continue;
+        for(int j = 2*i;j <= xw;j += i) sieve[j] = i;
+    } mxkq = max(mxkq,xw); }
+struct custom_hash {
     template <class T1, class T2>
     size_t operator()(const pair<T1, T2>& p) const
     { auto hash1=hash<T1>{}(p.first);auto hash2=hash<T2>{}(p.second);return hash1^hash2;}
 };
 auto comp = [](pair<int,int> left, pair<int,int> right)
 { return(left.second < right.second); };
-inline bool is_int(double k)
-{
-    return ((k - floor(k) == 0)? true:false);
-}
-double ck = log(4);
+int a[MX];
 int main()
 {
     ios_base::sync_with_stdio(0); cin.tie(0); int t = 1;
@@ -37,15 +41,14 @@ int main()
     {
         int n;
         cin >> n;
-        if(is_int(log(3*n+1)/ck - 1))
+        for(int i=0;i<n;i++)
+            cin >> a[i];
+        sort(a,a+n);
+        
+        for(int i=1;i<n;i++)
         {
-            cout << "YES\n";
-            continue;
+
         }
-        if(n%2 == 0 && is_int(log(3*(n/2)+1)/ck - 1))
-            cout << "YES\n";
-        else
-            cout << "NO\n";
     }
     return 0;
 }

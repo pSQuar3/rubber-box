@@ -16,50 +16,59 @@ inline pair<A,int> kadane(A x[], int n) {
         if(max_ending_here < 0) max_ending_here = 0;}
     return make_pair(max_so_far,h);
 }
-struct custom_hash
-{
+const int INF = 10000;
+const int MX = 100000;
+int sieve[MX+1],mxkq=0;
+inline void buildSieve(int xw) {
+    for(int i=mxkq;i<=max(xw,mxkq);i++) sieve[i] = 0;
+    for(int i = max(2,mxkq); i <= xw;i++) {
+        if(sieve[i]) continue;
+        for(int j = 2*i;j <= xw;j += i) sieve[j] = i;
+    } mxkq = max(mxkq,xw); }
+struct custom_hash {
     template <class T1, class T2>
     size_t operator()(const pair<T1, T2>& p) const
     { auto hash1=hash<T1>{}(p.first);auto hash2=hash<T2>{}(p.second);return hash1^hash2;}
 };
 auto comp = [](pair<int,int> left, pair<int,int> right)
 { return(left.second < right.second); };
-const int MX = 100000;
 int a[MX];
-/*int sieve[MX+1],mxkq=0;
-void buildSieve(int xw) {
-    for(int i=mxkq;i<=max(xw,mxkq);i++) sieve[i] = 0;
-    for(int i = max(2,mxkq); i <= xw;i++) {
-        if(sieve[i]) continue;
-        for(int j = 2*i;j <= xw;j += i) sieve[j] = i;
-    } mxkq = max(mxkq,xw); }*/
-//bitset<MX> b;
-string s;
-inline int solve()
-{
-    cin >> s;
-    bitset<MX> b(s);
-    int x = b.to_ulong();
-    if(x%3 != 0)
-        return -1;
-    if(__builtin_popcount(x) == 0)
-        return 0;
-    int n = s.length();
-    int sm=0;
-    for(int i=0;sm < x/3 && i<n;i++)
-    {
-        if(b[i] == 1)
-            sm += (1<<i);
-    }
-    return ((sm == x/3)? sm:-1);
-}
 int main()
 {
     ios_base::sync_with_stdio(0); cin.tie(0); int t = 1;
-    //cin >> t;
-    int n;
+    cin >> t;
+    unordered_map<string,int>  dt;
+    dt["push"] = 1;
+    dt["pop"] = 2;
+    dt["inc"] = 3;
+    int x,y,z,s;
+    string q;
+    int top=-1;
     while(t--)
-    { solve();
-            }
+    {
+        cin >> q;
+        s = dt[q];
+        switch(s)
+        {
+            case 1:
+                cin >> x;
+                a[++top] = x;
+            break;
+            case 2:
+                if(top == -1)
+                    cout << "EMPTY" << "\n";
+                else
+                    cout << a[top--] << "\n";
+            break;
+            case 3:
+                cin >> z >> y;
+                for(int i=0;i<z;i++)
+                    a[i] += y;
+            break;
+            default:
+                cout << "OPTION INVALID\n";
+            break;
+        }
+    }
     return 0;
 }

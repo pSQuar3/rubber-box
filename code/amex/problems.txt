@@ -1,0 +1,11 @@
+Question 1:
+
+There was one question on minimum how many trees you will trim inorder to make the height of trees alternatively increasing and decreasing and vice versa
+
+Question 2:
+
+Another one was on two time stamp was given in the form of string you have to find number of those times in-between those two time which has max two different digits like in between 13:11:10 and 13:12:12 there is 13:11:13 and 13:11:33 which is made out of only 2 distinct digits
+
+Question 3:
+
+The other was on string anagram where one has to find the number of anagrams of a word which starts with a vowel and doesn't have two or more vowels and consonants together in them.

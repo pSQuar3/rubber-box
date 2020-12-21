@@ -16,46 +16,48 @@ inline pair<A,int> kadane(A x[], int n) {
         if(max_ending_here < 0) max_ending_here = 0;}
     return make_pair(max_so_far,h);
 }
-struct custom_hash
-{
+const int INF = 10000;
+const int MX = 100000;
+int sieve[MX+1],mxkq=0;
+inline void buildSieve(int xw) {
+    for(int i=mxkq;i<=max(xw,mxkq);i++) sieve[i] = 0;
+    for(int i = max(2,mxkq); i <= xw;i++) {
+        if(sieve[i]) continue;
+        for(int j = 2*i;j <= xw;j += i) sieve[j] = i;
+    } mxkq = max(mxkq,xw); }
+struct custom_hash {
     template <class T1, class T2>
     size_t operator()(const pair<T1, T2>& p) const
     { auto hash1=hash<T1>{}(p.first);auto hash2=hash<T2>{}(p.second);return hash1^hash2;}
 };
 auto comp = [](pair<int,int> left, pair<int,int> right)
 { return(left.second < right.second); };
-vector<vector<int>> graph;
-vector<bool> v;
-vector<int> num;
-int n,m;
-void dfs(int d)
-{
-    v[d] = true;
-    num[d] = (int)graph[d].size();
-    for(int i=0;i<(int)graph[d].size();i++)
-    {
-        if(!v[graph[d][i]])
-        {
-            dfs(graph[d][i]);
-            num[d] += num[graph[d][i]];
-        }
-    }
-}
+int a[MX];
 int main()
 {
     ios_base::sync_with_stdio(0); cin.tie(0); int t = 1;
     //cin >> t;
-    /*
-     *  PLAN:
-     *  Run kosaraju and find scc
-     *  num_scc -> nodes in scc
-     *  nodes_in_scc -> num_scc
-     *  create unordered map mapping pair to bool containing connections between SCC
-     *  create the adj. list of SCC graph (DAG, no need to worry about cycles)
-     *  initialise value of every node i in each SCC with no. of components in its SCC - 1.
-     *  traverse the SCC graph with DFS and calculate the number of nodes accessible from every SCC node and store them in an array
-     *  for every node in the original graph, add the nodes reachable from the SCCs to the 
-     */
-
+    while(t--)
+    {
+        int n,l;
+        cin >> n >> l;
+        for(int i=0;i<n;i++)
+            cin >> a[i];
+        sort(a,a+n);
+        double m=0;
+        for(int i=1;i<n;i++)
+            if(m < ((double)(a[i]-a[i-1])/2))
+                m = ((double)(a[i]-a[i-1])/2);
+        if(n == 1)
+            m = max(a[0],l-a[0]);
+        else
+        {
+            if(a[n-1] != l && m < l-a[n-1])
+                m = l-a[n-1];
+            if(a[0] != 0 && m < a[0])
+                m = a[0];
+        }
+        cout << fixed << m << setprecision(6) << "\n";
+    }
     return 0;
 }
