@@ -1,10 +1,10 @@
-// https://codeforces.com/problemset/problem/1521/A
+// https://codeforces.com/problemset/problem/1520/D
 #include <bits/stdc++.h>
 #define lli long long int
 #define ull unsigned long long
 using namespace std;
 const int INF = 10000;
-const int MX = 100000;
+const int MX = 200000;
 const int MOD = 1000000009;
 template<typename A,typename B>
 lli fpow(A x,B y,long M)
@@ -52,20 +52,30 @@ auto cmp = [](pair<int,int> left, pair<int,int> right)
 {
     return(left.second < right.second);
 };
+int a[MX];
 int main()
 {
     ios_base::sync_with_stdio(0); cin.tie(0); int t = 1;
     cin >> t;
-    lli a,b;
+    int n;
+    lli f;
     while(t--)
     {
-        cin >> a >> b;
-        if(b == 1)
-            cout << "NO\n";
-        else
+        cin >> n;
+        unordered_map<int,int> s;
+        for(int i=0;i<n;i++)
         {
-            cout << "YES\n" << a << " " << a*b << " " << a*(b + 1) << "\n";
+            cin >> a[i];
+            //if(a[i] >= i)
+            s[a[i]-i]++;
         }
+        lli ct = 0;
+        for(unordered_map<int,int>::iterator i = s.begin();i != s.end();i++)
+        {
+            f = (lli)(i->second);
+            ct += (lli)(f*(f-1))/2;
+        }
+        cout << ct << "\n";
     }
     return 0;
 }
