@@ -1,4 +1,4 @@
-// https://codeforces.com/problemset/problem/1512/D
+// https://codeforces.com/contest/1527/problem/B1
 #include <bits/stdc++.h>
 #define lli long long int
 #define ull unsigned long long
@@ -53,52 +53,34 @@ auto cmp = [](pair<int,int> left, pair<int,int> right)
     return(left.second < right.second);
 };
 int a[MX];
-int b[MX+2];
+int sieve[MX+1];
 int main()
 {
     ios_base::sync_with_stdio(0); cin.tie(0); int t = 1;
     cin >> t;
     while(t--)
     {
-        int n,s=0,fin=0,g=0;
+        int n,c=0;char x;
         cin >> n;
-        unordered_map<int,int> x;
-        for(int i=0;i<n+2;i++)
+        for(int i=0;i<n;i++)
         {
-            cin >> b[i];
-            s += b[i];
-            x[b[i]]++;
+            cin >> x;
+            c += 1-((int)x - 48);
         }
-        for(int i=0;i<n+2 && !fin;i++)
+        if(c == 1 || c%2 == 0)
         {
-            g = (s - b[i]);
-            if(g%2)
-                continue;
-            g = g/2;
-            if(x.find(g) != x.end())
-            {
-                fin = g;
-                g = b[i];
-            }
-        }
-        if(fin == 0)
+		    cout << "BOB\n";
+            continue;
+	    }
+	    if(c%2)
         {
-            cout << "-1\n";
+		    cout << "ALICE\n";
             continue;
         }
-        for(unordered_map<int,int>::iterator i = x.begin();i != x.end();i++)
-        {
-            int h = i->second;
-            if(i->first == fin || i->first == g)
-            {
-                h = h-1;
-                if(fin == g)
-                    h = h-1;
-            }
-            while(max(0,h--))
-                cout << i->first << " ";
-        }
-        cout << "\n";
+        //if((n == 1 && c == 1) || c%2 == 0)
+         //   cout << "BOB\n";
+        //else
+         //   cout << "ALICE\n";
     }
     return 0;
 }
