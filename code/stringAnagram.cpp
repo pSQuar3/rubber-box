@@ -1,4 +1,3 @@
-// https://codeforces.com/problemset/problem/1512/D
 #include <bits/stdc++.h>
 #define lli long long int
 #define ull unsigned long long
@@ -52,52 +51,24 @@ auto cmp = [](pair<int,int> left, pair<int,int> right)
 {
     return(left.second < right.second);
 };
-int b[MX+2];
+string sort(string s)
+{
+    string d = "";
+    vector<int> arr(26,0);
+    for(string::iterator it = s.begin();it != s.end();it++)
+    {
+        arr[(*it - )]
+    }
+}
 int main()
 {
     ios_base::sync_with_stdio(0); cin.tie(0); int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--)
     {
-        int n,s=0,fin=0,g=0;
-        cin >> n;
-        unordered_map<int,int> x;
-        for(int i=0;i<n+2;i++)
-        {
-            cin >> b[i];
-            s += b[i];
-            x[b[i]]++;
-        }
-        for(int i=0;i<n+2 && !fin;i++)
-        {
-            g = (s - b[i]);
-            if(g%2)
-                continue;
-            g = g/2;
-            if(x.find(g) != x.end())
-            {
-                fin = g;
-                g = b[i];
-            }
-        }
-        if(fin == 0)
-        {
-            cout << "-1\n";
-            continue;
-        }
-        for(unordered_map<int,int>::iterator i = x.begin();i != x.end();i++)
-        {
-            int h = i->second;
-            if(i->first == fin || i->first == g)
-            {
-                h = h-1;
-                if(fin == g)
-                    h = h-1;
-            }
-            while(max(0,h--))
-                cout << i->first << " ";
-        }
-        cout << "\n";
+        string a,b;
+        cin >> a >> b;
+
     }
     return 0;
 }
