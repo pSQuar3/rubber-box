@@ -59,8 +59,50 @@ int main()
     cin >> t;
     while(t--)
     {
-        int n,s=0,fin=0,g=0;
+        int n,s=0,x=0,bn=0,ind=-1;
         cin >> n;
+        unordered_map<int,int> mp;
+        for(int i=0;i<n+2;i++)
+        {
+            cin >> b[i];
+            s += b[i];
+            mp[b[i]] = i;
+        }
+        for(int i=0;i<n+2 && !bn;i++)
+        {
+            int g = s - b[i];
+            if(g%2)
+                continue;
+            else if(mp.find(g/2) != mp.end())
+            {
+                ind = mp[g/2];
+                bn = g/2;
+                b[ind] = -1;
+            }
+        }
+        s = s - bn;
+        for(int i=0;i<n+2 && !x;i++)
+        {
+            if(s-b[i] == bn)
+            {
+                x = b[i];
+                b[i] = -1;
+            }
+        }
+        if(bn == 0 || x == 0)
+            cout << "-1\n";
+        else
+        {
+            for(int i=0;i<n+2;i++)
+            {
+                if(b[i] > 0)
+                    cout << b[i] << " ";
+            }
+            cout << "\n";
+        }
+        
+
+        /*
         unordered_map<int,int> x;
         for(int i=0;i<n+2;i++)
         {
@@ -98,6 +140,7 @@ int main()
                 cout << i->first << " ";
         }
         cout << "\n";
+        */
     }
     return 0;
 }
